@@ -1,0 +1,31 @@
+"*":
+  "atom-beautify":
+    general:
+      _analyticsUserId: "1ce64560-d1c7-4b7c-9042-5b86c140f540"
+    rust:
+      beautify_on_save: true
+      rustfmt_path: "/home/ukiy/.cargo/bin/rustfmt"
+  "atom-text-editor":
+    "vim-mode":
+      "insert-mode":
+        "j k": "vim-mode:activate-normal-mode"
+  build:
+    refreshOnShowTargetList: true
+  core:
+    themes: [
+      "atom-dark-ui"
+      "atom-dark-syntax"
+    ]
+  editor:
+    fontFamily: "Ricty"
+  linter:
+    errorPanelHeight: 22
+    showErrorTabLine: true
+  racer:
+    cargoHome: "/home/ukiy/.cargo"
+    racerBinPath: "/home/ukiy/.cargo/bin/racer"
+    rustSrcPath: "/home/ukiy/tmp/rustc-1.10.0/src"
+  "tree-view":
+    hideVcsIgnoredFiles: true
+  welcome:
+    showOnStartup: false
