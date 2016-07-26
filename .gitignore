@@ -1,4 +1,5 @@
 .atom/.apm/
+.atom/.npm/
 .atom/.node-gyp/
 .atom/packages/
 .atom/blob-store/
