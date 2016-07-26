@@ -1,3 +1,5 @@
+# atom
+
 .atom/.apm/
 .atom/.npm/
 .atom/.node-gyp/
@@ -6,4 +8,3 @@
 .atom/compile-cache/
 .atom/electron/
 .atom/storage/
-
