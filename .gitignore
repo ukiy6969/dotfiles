@@ -8,3 +8,6 @@
 .atom/compile-cache/
 .atom/electron/
 .atom/storage/
+
+# nvim
+config/nvim/dein/
