@@ -1,11 +1,12 @@
 " host python
-let g:python_host_prog = '/home/ukiy/.pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = '/home/ukiy/.pyenv/versions/neovim3/bin/python'
+let g:home = $HOME
+let g:python_host_prog = home . '/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = home . '/.pyenv/versions/neovim3/bin/python'
 
 " rust
 set hidden
-let g:racer_cmd = "/home/ukiy/.cargo/bin/racer"
-let $RUST_SRC_PATH = "/home/ukiy/tmp/rustc-1.8.0/src/"
+let g:racer_cmd = "$HOME/.cargo/bin/racer"
+let $RUST_SRC_PATH = "$HOME/tmp/rustc-1.8.0/src/"
 
 " dein
 if &compatible
@@ -13,10 +14,10 @@ if &compatible
 endif
 
 " Required:
-set runtimepath^=/home/ukiy/.config/nvim/dein/repos/github.com/Shougo/dein.vim
+set runtimepath^=$HOME/.config/nvim/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-call dein#begin(expand('/home/ukiy/.config/nvim/dein'))
+call dein#begin(expand('$HOME/.config/nvim/dein'))
 
 " Let dein manage dein
 " Required:
@@ -48,6 +49,8 @@ call dein#add('cespare/vim-toml')
 call dein#add('plasticboy/vim-markdown')
 call dein#add('kannokanno/previm')
 call dein#add('tyru/open-browser.vim')
+call dein#add('wavded/vim-stylus')
+call dein#add('airblade/vim-gitgutter')
 
 " Required:
 call dein#end()
@@ -87,6 +90,10 @@ set tabstop=2
 set shiftwidth=2
 set helplang=en
 set clipboard=unnamed,unnamedplus
+set autochdir
+
+" ect
+au BufNewFile,BufRead *.ect setf html "
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
@@ -139,6 +146,7 @@ let g:unite_enable_start_insert=1
 let g:unite_source_history_yank_enable=1
 nnoremap <silent><Leader>b :Unite buffer<CR>
 nnoremap <silent><Leader>o :UniteWithBufferDir -buffer-name=files file <CR>
+nnoremap <silent><Leader>gs :Unite giti/status <CR>
 
 " Color
 colorscheme molokai
