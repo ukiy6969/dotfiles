@@ -12,3 +12,4 @@
 # nvim
 config/nvim/dein/
 config/nvim/.*
+config/nvim/colors

@@ -158,7 +158,7 @@ nnoremap <silent><Leader>o :UniteWithBufferDir -buffer-name=files file <CR>
 nnoremap <silent><Leader>gs :Unite giti/status <CR>
 
 " Color
-colorscheme molokai
+colorscheme hybrid
 set background=dark
 "hi Normal ctermbg=NONE
 "hi NonText ctermbg=NONE
