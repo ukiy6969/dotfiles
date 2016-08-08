@@ -53,6 +53,8 @@ call dein#add('tyru/open-browser.vim')
 call dein#add('wavded/vim-stylus')
 call dein#add('airblade/vim-gitgutter')
 call dein#add('scrooloose/syntastic')
+call dein#add('mtscout6/syntastic-local-eslint.vim')
+call dein#add('ternjs/tern_for_vim')
 
 " Required:
 call dein#end()
@@ -234,7 +236,15 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+" javascript
+let g:syntastic_javascript_checkers=['eslint']
+" エラー行に sign を表示
+let g:syntastic_enable_signs = 1
+" location list を常に更新
+let g:syntastic_always_populate_loc_list = 0
+" location list を常に表示
+let g:syntastic_auto_loc_list = 0
+" ファイルを開いた時にチェックを実行する
 let g:syntastic_check_on_open = 1
+" :wq で終了する時もチェックする
 let g:syntastic_check_on_wq = 0
