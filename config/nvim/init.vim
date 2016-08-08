@@ -7,6 +7,7 @@ let g:python3_host_prog = home . '/.pyenv/versions/neovim3/bin/python'
 set hidden
 let g:racer_cmd = "$HOME/.cargo/bin/racer"
 let $RUST_SRC_PATH = "$HOME/tmp/rustc-1.8.0/src/"
+let g:rustfmt_autosave = 1
 
 " dein
 if &compatible
@@ -51,6 +52,7 @@ call dein#add('kannokanno/previm')
 call dein#add('tyru/open-browser.vim')
 call dein#add('wavded/vim-stylus')
 call dein#add('airblade/vim-gitgutter')
+call dein#add('scrooloose/syntastic')
 
 " Required:
 call dein#end()
@@ -91,6 +93,13 @@ set shiftwidth=2
 set helplang=en
 set clipboard=unnamed,unnamedplus
 set autochdir
+set modifiable
+set write
+set wrap
+
+" Char Code
+set encoding=utf-8
+set fileencodings=iso-2022-jp,cp932,sjis,euc-jp,utf-8
 
 " ect
 au BufNewFile,BufRead *.ect setf html "
@@ -219,3 +228,13 @@ let g:previm_open_cmd = 'firefox'
 inoremap jj <Esc>
 inoremap ll <Esc>
 inoremap <C-l> l
+
+" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
