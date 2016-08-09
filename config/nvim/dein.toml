@@ -1,0 +1,52 @@
+# Let dein manage dein
+# Required:
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+# Unite
+[[plugins]]
+repo = 'Shougo/unite.vim'
+
+[[plugins]]
+repo = 'kmnk/vim-unite-giti'
+
+# Snipet
+[[plugins]]
+repo = 'Shougo/neosnippet.vim'
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+# NERDTree
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+
+# Deoplete
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+
+[[plugins]]
+repo = 'Shougo/vimshell'
+
+[[plugins]]
+repo = 'nathanaelkane/vim-indent-guides'
+
+[[plugins]]
+repo = 'bronson/vim-trailing-whitespace'
+
+# Git
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+
+# TOML
+[[plugins]]
+repo = 'cespare/vim-toml'
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+
+[[plugins]]
+repo = 'scrooloose/syntastic'

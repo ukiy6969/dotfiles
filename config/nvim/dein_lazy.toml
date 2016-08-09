@@ -1,0 +1,39 @@
+# Rust
+[[plugins]]
+repo = 'rust-lang/rust.vim'
+on_ft = ['rust']
+
+[[plugins]]
+repo = 'racer-rust/vim-racer'
+on_ft = ['rust']
+
+[[plugins]]
+repo = 'timonv/vim-cargo'
+on_ft = ['rust']
+
+# Web api
+[[plugins]]
+repo = 'mattn/webapi-vim'
+
+# Javascript
+[[plugins]]
+repo = 'pangloss/vim-javascript'
+on_ft = ['javascript']
+
+[[plugins]]
+repo = 'mtscout6/syntastic-local-eslint.vim'
+on_ft = ['javascript']
+
+[[plugins]]
+repo = 'ternjs/tern_for_vim'
+on_ft = ['javascript']
+
+# Markdown
+[[plugins]]
+repo = 'plasticboy/vim-markdown'
+on_ft = ['Markdown', 'markdown']
+
+# Stylus
+[[plugins]]
+repo = 'wavded/vim-stylus'
+on_ft = ['stylus']

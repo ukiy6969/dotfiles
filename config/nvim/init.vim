@@ -15,46 +15,26 @@ if &compatible
 endif
 
 " Required:
-set runtimepath^=$HOME/.config/nvim/dein/repos/github.com/Shougo/dein.vim
+let s:dein_dir = expand('~/.cache/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
-" Required:
-call dein#begin(expand('$HOME/.config/nvim/dein'))
+" dein.vim がなければ github から落としてくる
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+  endif
+  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+endif
 
-" Let dein manage dein
-" Required:
-call dein#add('Shougo/dein.vim')
+call dein#begin(s:dein_dir)
 
-" Add or remove your plugins here:
-call dein#add('Shougo/neosnippet.vim')
-call dein#add('Shougo/neosnippet-snippets')
+" dein.toml setting
+let g:rc_dir    = expand('~/.config/nvim')
+let s:toml      = g:rc_dir . '/dein.toml'
+let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
 
-" You can specify revision/branch/tag.
-"call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
-call dein#add('scrooloose/nerdtree')
-call dein#add('Shougo/unite.vim')
-call dein#add('kmnk/vim-unite-giti')
-call dein#add('freeo/vim-kalisi')
-call dein#add('tomasr/molokai')
-call dein#add('Shougo/deoplete.nvim')
-call dein#add('rust-lang/rust.vim')
-call dein#add('racer-rust/vim-racer')
-call dein#add('phildawes/racer')
-call dein#add('timonv/vim-cargo')
-call dein#add('mattn/webapi-vim')
-call dein#add('pangloss/vim-javascript')
-call dein#add('itchyny/lightline.vim')
-call dein#add('nathanaelkane/vim-indent-guides')
-call dein#add('bronson/vim-trailing-whitespace')
-call dein#add('tpope/vim-fugitive')
-call dein#add('cespare/vim-toml')
-call dein#add('plasticboy/vim-markdown')
-call dein#add('kannokanno/previm')
-call dein#add('tyru/open-browser.vim')
-call dein#add('wavded/vim-stylus')
-call dein#add('airblade/vim-gitgutter')
-call dein#add('scrooloose/syntastic')
-call dein#add('mtscout6/syntastic-local-eslint.vim')
-call dein#add('ternjs/tern_for_vim')
+call dein#load_toml(s:toml,      {'lazy': 0})
+call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
 " Required:
 call dein#end()
@@ -98,6 +78,9 @@ set autochdir
 set modifiable
 set write
 set wrap
+set cursorline
+set showmatch
+set matchtime=1
 
 " Char Code
 set encoding=utf-8
@@ -118,14 +101,10 @@ if exists('&ambiwidth')
   set ambiwidth=double
 endif
 
-" insertモードから抜ける
-"inoremap <silent> <C-[> <ESC>
-
-set showmatch
-set matchtime=1
-
-"nnoremap j gj
-"nnoremap k gk
+" Keymap
+inoremap jj <Esc>
+inoremap ll <Esc>
+inoremap <C-l> l
 
 " leader is space
 let mapleader = "\<Space>"
@@ -146,7 +125,7 @@ nnoremap <Leader>n gt
 nnoremap <Leader>p gT
 
 " noh
-"nnoremap <Leader>l :noh<CR>
+nnoremap <C-l> :noh<C-l><CR>
 
 " NERDTree
 let NERDTreeQuitOnOpen=1
@@ -160,40 +139,17 @@ nnoremap <silent><Leader>o :UniteWithBufferDir -buffer-name=files file <CR>
 nnoremap <silent><Leader>gs :Unite giti/status <CR>
 
 " Color
+let g:hybrid_use_Xresources = 1
+let g:hybrid_reduced_contrast = 1
 colorscheme hybrid
 set background=dark
-"hi Normal ctermbg=NONE
-"hi NonText ctermbg=NONE
 
 " deoplate
 let g:deoplete#enable_at_startup = 1
-"inoremap <silent><expr> <Tab>
-"  \ pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
 
 " javascript
 let g:javascript_enable_domhtmlcss = 1
 "set foldmethod=syntax
-
-" lightline
-"let g:lightline = {
-"      \ 'colorscheme': 'wombat',
-"      \ 'active': {
-"      \   'left': [ [ 'mode', 'paste' ],
-"      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
-"      \ },
-"      \ 'component': {
-"      \   'readonly': '%{&filetype=="help"?"":&readonly?"⭤":""}',
-"      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
-"      \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
-"      \ },
-"      \ 'component_visible_condition': {
-"      \   'readonly': '(&filetype!="help"&& &readonly)',
-"      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
-"      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
-"      \ },
-"      \ 'separator': { 'left': '⮀', 'right': '⮂' },
-"      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
-"      \ }
 
 " vim-indent-guides
 let g:indent_guides_enable_on_vim_startup=1
@@ -210,14 +166,6 @@ imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
-" SuperTab like snippets behavior.
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-"smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-"\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
 " For conceal markers.
 if has('conceal')
   set conceallevel=2 concealcursor=niv
@@ -226,10 +174,6 @@ endif
 " Markdown
 au BufRead,BufNewFile *.md set filetype=markdown
 let g:previm_open_cmd = 'firefox'
-
-inoremap jj <Esc>
-inoremap ll <Esc>
-inoremap <C-l> l
 
 " syntastic
 set statusline+=%#warningmsg#
@@ -243,7 +187,7 @@ let g:syntastic_enable_signs = 1
 " location list を常に更新
 let g:syntastic_always_populate_loc_list = 0
 " location list を常に表示
-let g:syntastic_auto_loc_list = 0
+let g:syntastic_auto_loc_list = 1
 " ファイルを開いた時にチェックを実行する
 let g:syntastic_check_on_open = 1
 " :wq で終了する時もチェックする
