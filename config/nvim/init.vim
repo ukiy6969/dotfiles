@@ -3,12 +3,6 @@ let g:home = $HOME
 let g:python_host_prog = home . '/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = home . '/.pyenv/versions/neovim3/bin/python'
 
-" rust
-set hidden
-let g:racer_cmd = "$HOME/.cargo/bin/racer"
-let $RUST_SRC_PATH = "$HOME/tmp/rustc-1.8.0/src/"
-let g:rustfmt_autosave = 1
-
 " dein
 if &compatible
   set nocompatible               " Be iMproved
@@ -74,7 +68,6 @@ set tabstop=2
 set shiftwidth=2
 set helplang=en
 set clipboard=unnamed,unnamedplus
-set autochdir
 set modifiable
 set write
 set wrap
@@ -84,7 +77,16 @@ set matchtime=1
 
 " Char Code
 set encoding=utf-8
-set fileencodings=iso-2022-jp,cp932,sjis,euc-jp,utf-8
+set fileencodings=utf-8,iso-2022-jp,cp932,sjis,euc-jp
+
+" Color
+let g:hybrid_use_Xresources = 1
+let g:hybrid_reduced_contrast = 1
+colorscheme hybrid
+set background=dark
+
+" 背景透過
+highlight Normal ctermbg=none
 
 " ect
 au BufNewFile,BufRead *.ect setf html "
@@ -107,7 +109,7 @@ inoremap ll <Esc>
 inoremap <C-l> l
 
 " leader is space
-let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
 
 nnoremap <Leader>s :<C-u>sp<CR>
 nnoremap <Leader>v :<C-u>vs<CR>
@@ -124,41 +126,16 @@ nnoremap <Leader>t :<C-u>tabnew<CR>
 nnoremap <Leader>n gt
 nnoremap <Leader>p gT
 
+" VimFiler
+nnoremap <silent> <Leader>f :VimFiler<CR>
+
 " noh
 nnoremap <C-l> :noh<C-l><CR>
 
-" NERDTree
-let NERDTreeQuitOnOpen=1
-nnoremap <silent> <Leader>f :NERDTreeToggle<CR>
-
 " Unite
-let g:unite_enable_start_insert=1
-let g:unite_source_history_yank_enable=1
 nnoremap <silent><Leader>b :Unite buffer<CR>
 nnoremap <silent><Leader>o :UniteWithBufferDir -buffer-name=files file <CR>
 nnoremap <silent><Leader>gs :Unite giti/status <CR>
-
-" Color
-let g:hybrid_use_Xresources = 1
-let g:hybrid_reduced_contrast = 1
-colorscheme hybrid
-set background=dark
-
-" deoplate
-let g:deoplete#enable_at_startup = 1
-
-" javascript
-let g:javascript_enable_domhtmlcss = 1
-"set foldmethod=syntax
-
-" vim-indent-guides
-let g:indent_guides_enable_on_vim_startup=1
-let g:indent_guides_start_level=2
-let g:indent_guides_auto_colors=0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=235
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=234
-let g:indent_guides_color_change_percent = 30
-let g:indent_guides_guide_size = 1
 
 " neosnippet
 " Plugin key-mappings.
@@ -174,21 +151,3 @@ endif
 " Markdown
 au BufRead,BufNewFile *.md set filetype=markdown
 let g:previm_open_cmd = 'firefox'
-
-" syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-" javascript
-let g:syntastic_javascript_checkers=['eslint']
-" エラー行に sign を表示
-let g:syntastic_enable_signs = 1
-" location list を常に更新
-let g:syntastic_always_populate_loc_list = 0
-" location list を常に表示
-let g:syntastic_auto_loc_list = 1
-" ファイルを開いた時にチェックを実行する
-let g:syntastic_check_on_open = 1
-" :wq で終了する時もチェックする
-let g:syntastic_check_on_wq = 0

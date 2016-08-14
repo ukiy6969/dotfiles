@@ -2,6 +2,9 @@
 [[plugins]]
 repo = 'rust-lang/rust.vim'
 on_ft = ['rust']
+hook_source = '''
+  let g:rustfmt_autosave = 1
+'''
 
 [[plugins]]
 repo = 'racer-rust/vim-racer'
@@ -19,6 +22,11 @@ repo = 'mattn/webapi-vim'
 [[plugins]]
 repo = 'pangloss/vim-javascript'
 on_ft = ['javascript']
+hook_source = '''
+  " javascript
+  let g:javascript_enable_domhtmlcss = 1
+  let g:syntastic_javascript_checkers=['eslint']
+'''
 
 [[plugins]]
 repo = 'mtscout6/syntastic-local-eslint.vim'
