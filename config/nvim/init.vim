@@ -109,7 +109,7 @@ inoremap ll <Esc>
 inoremap <C-l> l
 
 " leader is space
-let g:mapleader = "\<Space>"
+let g:mapleader = ","
 let g:maplocalleader = ","
 
 nnoremap <Leader>s :<C-u>sp<CR>
@@ -124,11 +124,12 @@ nnoremap <Leader>K <C-w>K
 nnoremap <Leader>L <C-w>L
 nnoremap <Leader>H <C-w>H
 nnoremap <Leader>t :<C-u>tabnew<CR>
-nnoremap <Leader>n gt
-nnoremap <Leader>p gT
+nnoremap J gt
+nnoremap K gT
 
 " VimFiler
-nnoremap <silent> <Leader>f :VimFiler<CR>
+nnoremap <silent> <localleader>fe :VimFilerExplorer<CR>
+nnoremap <silent> <localleader>ff :VimFilerBufferDir<CR>
 
 " noh
 nnoremap <C-l> :noh<C-l><CR>

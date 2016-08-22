@@ -37,10 +37,13 @@ repo = 'ternjs/tern_for_vim'
 build = 'npm install'
 on_ft = ['javascript']
 hook_source = '''
-  nnoremap <silent><Leader>gd :TernDef <CR>
-  nnoremap <silent><Leader>gr :TernRef <CR>
-  nnoremap <silent><Leader>gt :TernType <CR>
+  "let g:tern_show_argument_hints="on_move"
+  let g:tern_map_keys = 1
 '''
+
+[[plugins]]
+repo = 'heavenshell/vim-jsdoc'
+on_ft = ['Javascript']
 
 # Markdown
 [[plugins]]

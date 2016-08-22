@@ -144,7 +144,7 @@ hook_add = '''
   " エラー行に sign を表示
   let g:syntastic_enable_signs = 1
   " location list を常に更新
-  let g:syntastic_always_populate_loc_list = 0
+  let g:syntastic_always_populate_loc_list = 1
   " location list を常に表示
   let g:syntastic_auto_loc_list = 1
   " ファイルを開いた時にチェックを実行する
