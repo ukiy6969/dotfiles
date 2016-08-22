@@ -110,6 +110,7 @@ inoremap <C-l> l
 
 " leader is space
 let g:mapleader = "\<Space>"
+let g:maplocalleader = ","
 
 nnoremap <Leader>s :<C-u>sp<CR>
 nnoremap <Leader>v :<C-u>vs<CR>
@@ -136,6 +137,7 @@ nnoremap <C-l> :noh<C-l><CR>
 nnoremap <silent><Leader>b :Unite buffer<CR>
 nnoremap <silent><Leader>o :UniteWithBufferDir -buffer-name=files file <CR>
 nnoremap <silent><Leader>gs :Unite giti/status <CR>
+nnoremap <silent><Leader>gp :Unite grep <CR>
 
 " neosnippet
 " Plugin key-mappings.
@@ -151,3 +153,6 @@ endif
 " Markdown
 au BufRead,BufNewFile *.md set filetype=markdown
 let g:previm_open_cmd = 'firefox'
+
+" Tex
+let g:syntastic_tex_checkers = ['']
