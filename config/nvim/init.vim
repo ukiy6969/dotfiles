@@ -123,7 +123,7 @@ nnoremap <Leader>J <C-w>J
 nnoremap <Leader>K <C-w>K
 nnoremap <Leader>L <C-w>L
 nnoremap <Leader>H <C-w>H
-nnoremap <Leader>t :<C-u>tabnew<CR>
+nnoremap <Leader>t :VimFilerTab<CR>
 nnoremap J gt
 nnoremap K gT
 
