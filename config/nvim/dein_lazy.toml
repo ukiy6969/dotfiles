@@ -74,3 +74,13 @@ hook_source = '''
   let g:vimtex_view_general_viewer = 'okular'
   let g:vimtex_view_general_options = '--unique @pdf\#src:@line@tex'
 '''
+
+# Haskell
+[[plugins]]
+repo = 'itchyny/vim-haskell-indent'
+on_ft = ['haskell']
+
+
+[[plugins]]
+repo = 'eagletmt/ghcmod-vim'
+on_ft = ['haskell']
