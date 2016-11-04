@@ -189,7 +189,7 @@ set $mode_display Display HDMI1 (l) left, (r) right, (o) off
 
 mode "$mode_display_HDMI1" {
     bindsym l exec --no-startup-id xrandr --output HDMI1 --auto --left-of eDP1 && $bg_set
-    bindsym r exec --no-startup-id xrandr --output HDMI1 --auto --right-of eDP1 && $bg_set
+    bindsym r exec --no-startup-id xrandr --output HDMI1 --scale 2x2 --mode 1920x1080 --right-of eDP1 && $bg_set
     bindsym o exec --no-startup-id xrandr --output HDMI1 --off && $bg_set
 
     # back to normal: Enter or Escape

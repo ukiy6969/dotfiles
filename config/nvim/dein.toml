@@ -55,8 +55,8 @@ hook_add = '''
   let g:indent_guides_guide_size = 1
 '''
 
-[[plugins]]
-repo = 'bronson/vim-trailing-whitespace'
+# [[plugins]]
+# repo = 'bronson/vim-trailing-whitespace'
 
 # Git
 [[plugins]]
@@ -152,3 +152,9 @@ hook_add = '''
   " :wq で終了する時もチェックする
   let g:syntastic_check_on_wq = 0
 '''
+
+[[plugins]]
+repo = 'neomake/neomake'
+
+[[plugins]]
+repo = 'thinca/vim-ref'

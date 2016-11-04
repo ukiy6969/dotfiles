@@ -196,6 +196,34 @@ if globpath(&rtp, 'plugin/giti.vim') != ''
 endif
 " }}}
 
+" ghcmod.vim {{{
+" Type of expression under cursor
+nmap <silent> <leader>ht :GhcModType<CR>
+" Insert type of expression under cursor
+nmap <silent> <leader>hT :GhcModTypeInsert<CR>
+" GHC errors and warnings
+nmap <silent> <leader>hc :Neomake ghcmod<CR>
+" }}}
+
+" Hoogle {{{
+" Hoogle the word under the cursor
+nnoremap <silent> <leader>hh :Hoogle<CR>
+" Hoogle and prompt for input
+nnoremap <leader>hH :Hoogle 
+" Hoogle for detailed documentation (e.g. "Functor")
+nnoremap <silent> <leader>hi :HoogleInfo<CR>
+" Hoogle for detailed documentation and prompt for input
+nnoremap <leader>hI :HoogleInfo 
+" Hoogle, close the Hoogle window
+nnoremap <silent> <leader>hz :HoogleClose<CR>
+" }}}
+"
+" Tags {{{
+set tags=tags;/
+set cst
+set csverb
+" }}}
+
 " For conceal markers.
 if has('conceal')
   set conceallevel=2 concealcursor=niv
