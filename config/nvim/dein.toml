@@ -65,6 +65,10 @@ repo = 'tpope/vim-fugitive'
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
 
+# Color
+[[plugins]]
+repo = 'w0ng/vim-hybrid'
+
 # TOML
 [[plugins]]
 repo = 'cespare/vim-toml'
@@ -158,3 +162,9 @@ repo = 'neomake/neomake'
 
 [[plugins]]
 repo = 'thinca/vim-ref'
+
+[[plugins]]
+repo = 'rhysd/unite-redpen.vim'
+hook_add = '''
+let g:redpen_default_config_path = $HOME . '/.config/redpen/conf/redpen-conf-ja.xml'
+'''
