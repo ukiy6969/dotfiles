@@ -9,6 +9,10 @@ done
 
 ln -s $(realpath "${DIR}/config") "${HOME}/.config"
 
+export PYENV_ROOT=$HOME/.pyenv
+export PATH=$PYENV_ROOT/bin:$PATH
+eval "$(pyenv init -)"
+
 pyenv install 2.7.11
 pyenv install 3.4.4
 
