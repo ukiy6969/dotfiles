@@ -98,3 +98,6 @@ export PATH=$HOME/Downloads/WebStorm-162.1628.41/bin:$PATH
 
 # for Ruby
 export PATH=$HOME/.gem/ruby/2.4.0/bin:$PATH
+
+# for Docker
+unalias ls
