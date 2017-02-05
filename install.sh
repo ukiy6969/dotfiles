@@ -7,4 +7,4 @@ do
   ln -s $f "${HOME}/.$(basename $f)"
 done
 
-ln -s DIR/config "${HOME/.config}"
+ln -s $(realpath "${DIR}/config") "${HOME}/.config"

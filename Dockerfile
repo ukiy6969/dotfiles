@@ -1,8 +1,6 @@
 FROM alpine:latest
 
-ENV USER=ukiy
-ENV HOME=/home/ukiy
-ENV SHELL=/bin/zsh
+ENV USER=ukiy HOME=/home/ukiy SHELL=/bin/zsh
 
 RUN \
   echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
