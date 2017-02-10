@@ -203,6 +203,9 @@ nmap <silent> <leader>ht :GhcModType<CR>
 nmap <silent> <leader>hT :GhcModTypeInsert<CR>
 " GHC errors and warnings
 nmap <silent> <leader>hc :Neomake ghcmod<CR>
+
+map <silent> <leader>hr :call ApplyOneSuggestion()<CR>
+map <silent> <leader>hR :call ApplyAllSuggestions()<CR>
 " }}}
 
 " Hoogle {{{

@@ -2,9 +2,9 @@
 
 # zsh config
 DIR=$(dirname $0)
-for f in $DIR/zsh/??*
+for f in $DIR/config/zsh/??*
 do
-  ln -s $f "${HOME}/.$(basename $f)"
+  ln -s $(realpath $f) "${HOME}/.$(basename $f)"
 done
 
 ln -s $(realpath "${DIR}/config") "${HOME}/.config"
@@ -13,10 +13,10 @@ git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$H
 git clone https://github.com/yyuu/pyenv.git "${HOME}/.pyenv"
 git clone https://github.com/yyuu/pyenv-virtualenv.git "${HOME}/.pyenv/plugins/pyenv-virtualenv"
 
-#export PYENV_ROOT=$HOME/.pyenv
-#export PATH=$PYENV_ROOT/bin:$PATH
-#eval "$(pyenv init -)"
-#
+export PYENV_ROOT=$HOME/.pyenv
+export PATH=$PYENV_ROOT/bin:$PATH
+eval "$(pyenv init -)"
+
 #pyenv install 2.7.11
 #pyenv install 3.4.4
 #
