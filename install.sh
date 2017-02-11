@@ -7,7 +7,11 @@ do
   ln -s $(realpath $f) "${HOME}/.$(basename $f)"
 done
 
+# config
 ln -s $(realpath "${DIR}/config") "${HOME}/.config"
+
+# tmux
+ln -s $(realpath "${DIR}/config/tmux.conf") "${HOME}/.tmux.conf"
 
 git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 git clone https://github.com/yyuu/pyenv.git "${HOME}/.pyenv"
