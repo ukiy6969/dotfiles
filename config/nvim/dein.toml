@@ -11,6 +11,10 @@ hook_add = '''
   let g:unite_source_history_yank_enable=1
 '''
 
+# Translate
+[[plugins]]
+repo = 'daisuzu/translategoogle.vim'
+
 [[plugins]]
 repo = 'kmnk/vim-unite-giti'
 
@@ -57,6 +61,17 @@ hook_add = '''
 
 # [[plugins]]
 # repo = 'bronson/vim-trailing-whitespace'
+
+# CtrlP
+[[plugins]]
+repo = 'ctrlpvim/ctrlp.vim'
+
+# Tmux
+[[plugins]]
+repo = 'sjl/tslime2.vim'
+
+[[plugins]]
+repo = 'christoomey/vim-tmux-navigator'
 
 # Git
 [[plugins]]

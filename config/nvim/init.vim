@@ -3,7 +3,7 @@ let g:home = $HOME
 let g:python_host_prog = home . '/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = home . '/.pyenv/versions/neovim3/bin/python'
 
-" dein
+" dein {{{
 if &compatible
   set nocompatible               " Be iMproved
 endif
@@ -12,7 +12,7 @@ endif
 let s:dein_dir = expand('~/.cache/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
-" dein.vim がなければ github から落としてくる
+"  if no dein.vim, download from github
 if &runtimepath !~# '/dein.vim'
   if !isdirectory(s:dein_repo_dir)
     execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
@@ -41,98 +41,331 @@ if dein#check_install()
   call dein#install()
 endif
 
+" leader is ','
+let g:mapleader = ","
+let g:maplocalleader = ","
+
+" }}}
+
+" Default setting {{{
 syntax enable
 
 set showcmd
 set number
 set ruler
-set list
-set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set matchtime=1
-set incsearch
-set hlsearch
-set lazyredraw
-set magic
-set nowrap
-set showmatch
-set whichwrap=h,l
-set nowrapscan
-set ignorecase
-set smartcase
 set hidden
-set history=2000
+set history=700
 set autoindent
-set expandtab
-set smarttab
-set tabstop=2
-set shiftwidth=2
 set helplang=en
 set clipboard=unnamed,unnamedplus
 set modifiable
 set write
-set wrap
 set cursorline
-set showmatch
 set matchtime=1
 
 " Char Code
 set encoding=utf-8
 set fileencodings=utf-8,iso-2022-jp,cp932,sjis,euc-jp
 
-" Color
+" Use indentation for folds
+set foldmethod=indent
+set foldnestmax=5
+set foldlevelstart=99
+set foldcolumn=0
+
+augroup vimrcFold
+  " fold vimrc itself by categories
+  autocmd!
+  autocmd FileType vim set foldmethod=marker
+  autocmd FileType vim set foldlevel=0
+augroup END
+
+" Set to auto read when a file is changed from the outside
+set autoread
+
+" Leader key timeout
+set tm=2000
+
+" Allow the normal use of "," by pressing it twice
+noremap ,, ,
+
+" Set 7 lines to the cursor - when moving vertically using j/k
+set so=7
+
+" Turn on the WiLd menu
+" WiLd menu info http://boscono.hatenablog.com/entry/2013/11/17/230740
+set wildmenu
+" Tab-complete files up to longest unambiguous prefix
+set wildmode=list:longest,full
+
+" Always show current position
+set ruler
+set number
+
+" Show trailing whitespace
+set list
+" But only interesting whitespace
+if &listchars ==# 'eol:$'
+  set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+endif
+
+" Height of the command bar
+set cmdheight=1
+
+" Configure backspace so it acts as it should act
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
+
+" Ignore case when searching
+set ignorecase
+
+" When searching try to be smart about cases
+set smartcase
+
+" Highlight search results
+set hlsearch
+
+" Makes search act like search in modern browsers
+set incsearch
+
+" Don't redraw while executing macros (good performance config)
+set lazyredraw
+
+" For regular expressions turn magic on
+set magic
+
+" Show matching brackets when text indicator is over them
+set showmatch
+" How many tenths of a second to blink when matching brackets
+set mat=2
+
+" Ambiguous charactor (○,□)
+if exists('&ambiwidth')
+  set ambiwidth=double
+endif
+
+" }}}
+
+" Color {{{
+
 let g:hybrid_use_Xresources = 1
 let g:hybrid_reduced_contrast = 1
 colorscheme hybrid
 set background=dark
 
-" 背景透過
-highlight Normal ctermbg=none
+" Background transparency
+" highlight Normal ctermbg=none
 
-" ect
+" }}}
+
+" Files, backups and undo {{{
+
+" Turn backup off, since most stuff is in Git anyway...
+set nobackup
+set nowb
+set noswapfile
+
+" Source the vimrc file after saving it
+augroup sourcing
+  autocmd!
+  if has('nvim')
+    autocmd bufwritepost init.vim source $MYVIMRC
+  else
+    autocmd bufwritepost .vimrc source $MYVIMRC
+  endif
+augroup END
+
+" Open file prompt with current path
+nmap <leader>e :e <C-R>=expand("%:p:h") . '/'<CR>
+
+" Show undo tree
+nmap <silent> <leader>u :MundoToggle<CR>
+
+" Fuzzy find files
+nnoremap <silent> <Leader><space> :CtrlP<CR>
+let g:ctrlp_max_files=0
+let g:ctrlp_show_hidden=1
+let g:ctrlp_custom_ignore = { 'dir': '\v[\/](.git|.cabal-sandbox|.stack-work)$' }
+
+" }}}
+
+" Text, tab and indent related {{{
+
+" Use spaces instead of tabs
+set expandtab
+
+" Be smart when using tabs ;)
+set smarttab
+
+" 1 tab == 2 spaces
+set shiftwidth=2
+set tabstop=2
+
+" Linebreak on 500 characters
+set lbr
+set tw=500
+
+set ai "Auto indent
+set si "Smart indent
+set wrap "Wrap lines
+
+" Copy and paste to os clipboard
+nmap <leader>y "*y
+vmap <leader>y "*y
+nmap <leader>d "*d
+vmap <leader>d "*d
+nmap <leader>p "*p
+vmap <leader>p "*p
+
+" }}}
+
+" Visual mode related {{{
+
+" Visual mode pressing * or # searches for the current selection
+" Super useful! From an idea by Michael Naumann
+vnoremap <silent> * :call VisualSelection('f', '')<CR>
+vnoremap <silent> # :call VisualSelection('b', '')<CR>
+
+" }}}
+
+" Moving around, tabs, windows and buffers {{{
+
+" Treat long lines as break lines (useful when moving around in them)
+nnoremap j gj
+nnoremap k gk
+
+noremap <c-h> <c-w>h
+noremap <c-k> <c-w>k
+noremap <c-j> <c-w>j
+noremap <c-l> <c-w>l
+
+" Disable highlight when <leader><cr> is pressed
+" but preserve cursor coloring
+nmap <silent> <leader><cr> :noh\|hi Cursor guibg=red<cr>
+
+" Return to last edit position when opening files (You want this!)
+augroup last_edit
+  autocmd!
+  autocmd BufReadPost *
+       \ if line("'\"") > 0 && line("'\"") <= line("$") |
+       \   exe "normal! g`\"" |
+       \ endif
+augroup END
+" Remember info about open buffers on close
+set viminfo^=%
+
+" Open window splits in various places
+nmap <leader>sh :leftabove  vnew<CR>
+nmap <leader>sl :rightbelow vnew<CR>
+nmap <leader>sk :leftabove  new<CR>
+nmap <leader>sj :rightbelow new<CR>
+
+" Manually create key mappings (to avoid rebinding C-\)
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+
+" don't close buffers when you aren't displaying them
+set hidden
+
+" previous buffer, next buffer
+nnoremap <leader>bp :bp<cr>
+nnoremap <leader>bn :bn<cr>
+
+" close every window in current tabview but the current
+nnoremap <leader>bo <c-w>o
+
+" delete buffer without closing pane
+noremap <leader>bd :Bd<cr>
+
+" fuzzy find buffers
+noremap <leader>b<space> :CtrlPBuffer<cr>
+
+" Neovim terminal configurations
+if has('nvim')
+  " Use <Esc> to escape terminal insert mode
+  tnoremap <Esc> <C-\><C-n>
+  " Make terminal split moving behave like normal neovim
+  tnoremap <c-h> <C-\><C-n><C-w>h
+  tnoremap <c-j> <C-\><C-n><C-w>j
+  tnoremap <c-k> <C-\><C-n><C-w>k
+  tnoremap <c-l> <C-\><C-n><C-w>l
+endif
+
+
+" }}}
+
+" Status line {{{
+
+" Always show the status line
+set laststatus=2
+
+" }}}
+
+" Spell checking {{{
+
+" Pressing ,ss will toggle and untoggle spell checking
+map <leader>ss :setlocal spell!<cr>
+
+" }}}
+
+" Helper functions {{{
+
+function! CmdLine(str)
+  exe "menu Foo.Bar :" . a:str
+  emenu Foo.Bar
+  unmenu Foo
+endfunction
+
+function! VisualSelection(direction, extra_filter) range
+  let l:saved_reg = @"
+  execute "normal! vgvy"
+
+  let l:pattern = escape(@", '\\/.*$^~[]')
+  let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+  if a:direction == 'b'
+    execute "normal ?" . l:pattern . "^M"
+  elseif a:direction == 'gv'
+    call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.' . a:extra_filter)
+  elseif a:direction == 'replace'
+    call CmdLine("%s" . '/'. l:pattern . '/')
+  elseif a:direction == 'f'
+    execute "normal /" . l:pattern . "^M"
+  endif
+
+  let @/ = l:pattern
+  let @" = l:saved_reg
+endfunction
+
+" }}}
+
+" ect {{{
 au BufNewFile,BufRead *.ect setf html "
+" }}}
 
-" Uncomment the following to have Vim jump to the last position when
-" reopening a file
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-    \| exe "normal! g'\"" | endif
-endif
-
-" □とか○の文字があってもカーソル位置がずれないようにする
-if exists('&ambiwidth')
-  set ambiwidth=double
-endif
-
-" Keymap
+" Keymap {{{
 inoremap jj <Esc>
-inoremap ll <Esc>
-inoremap <C-l> l
-
-" leader is space
-let g:mapleader = ","
-let g:maplocalleader = ","
+inoremap <C-j> j
 
 nnoremap <Leader>s :<C-u>sp<CR>
 nnoremap <Leader>v :<C-u>vs<CR>
 
-nnoremap <Leader>j <C-w>j
-nnoremap <Leader>k <C-w>k
-nnoremap <Leader>l <C-w>l
-nnoremap <Leader>h <C-w>h
-nnoremap <Leader>J <C-w>J
-nnoremap <Leader>K <C-w>K
-nnoremap <Leader>L <C-w>L
-nnoremap <Leader>H <C-w>H
+" Force redraw
+map <silent> <leader>r :redraw!<CR>
+
 nnoremap <Leader>t :VimFilerTab<CR>
-nnoremap J gt
-nnoremap K gT
 
 " VimFiler
 nnoremap <silent> <localleader>fe :VimFilerExplorer<CR>
 nnoremap <silent> <localleader>ff :VimFilerBufferDir<CR>
 
 " noh
-nnoremap <C-l> :noh<C-l><CR>
+" nnoremap <C-l> :noh<C-l><CR>
 
 " Unite
 nnoremap <silent><Leader>b :Unite buffer<CR>
@@ -170,6 +403,8 @@ nmap [unite]gB    <SID>(git-branch_all)
 nmap [unite]gc    <SID>(git-config)
 nmap [unite]gl    <SID>(git-log)
 nmap [unite]gL    <SID>(git-log-this-file)
+
+" }}}
 
 " giti {{{
 if globpath(&rtp, 'plugin/giti.vim') != ''
@@ -227,14 +462,17 @@ set cst
 set csverb
 " }}}
 
-" For conceal markers.
+" For conceal markers. {{{
 if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
+" }}}
 
-" Markdown
+" Markdown {{{
 au BufRead,BufNewFile *.md set filetype=markdown
 let g:previm_open_cmd = 'firefox'
+" }}}
 
-" Tex
+" Tex {{{
 let g:syntastic_tex_checkers = ['']
+" }}}
