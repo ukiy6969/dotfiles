@@ -1,0 +1,35 @@
+ls
+ls
+g
+ls
+ls "-l" =<< glob "s*"
+ls =<< glob "s*"
+glob "s*"
+glob "stack.*"
+:m + System.FilePath.Glob
+ls "src"
+ls
+:r
+ls ("src" :: FilePath)
+:t ("src" :: FilePath)
+ls ["src", "examples"]
+ls
+:r
+ls
+ls "src"
+ls "hoge"
+ls "hoge
+ls [1, 2, 3]
+ls 2
+ls 1
+ls
+:r
+:r
+:r
+ls 1 2
+ls
+:m + Data.Miyash.Commands 
+:show imports 
+ls
+:r
+:r

@@ -81,7 +81,13 @@ hook_source = '''
 repo = 'neovimhaskell/haskell-vim'
 on_ft = ['haskell']
 hook_source = '''
-let g:neomake_open_list = 1
+" open the neomake error window automatically when an error is found
+let g:neomake_open_list = 2
+" Haskell Lint
+nmap <silent> <leader>hl :Neomake hlint<CR>
+
+" Options for Haskell Syntax Check
+let g:neomake_haskell_ghc_mod_args = '-g-Wall'
 '''
 
 [[plugins]]
@@ -91,9 +97,6 @@ on_ft = ['haskell']
 [[plugins]]
 repo = 'eagletmt/ghcmod-vim'
 on_ft = ['haskell']
-hook_source = '''
-nnoremap <C-l> :noh<C-l><CR>:GhcModTypeClear<CR>
-'''
 
 [[plugins]]
 repo = 'Shougo/neocomplcache'
@@ -107,9 +110,9 @@ on_ft = ['haskell']
 repo = 'Twinside/vim-hoogle'
 on_ft = ['haskell']
 
-[[plugins]]
-repo = 'osyo-manga/vim-watchdogs'
-on_ft = ['haskell']
+#[[plugins]]
+#repo = 'osyo-manga/vim-watchdogs'
+#on_ft = ['haskell']
 
 [[plugins]]
 repo = 'ujihisa/unite-haskellimport'
@@ -176,4 +179,24 @@ on_ft = ['haskell']
 
 [[plugins]]
 repo = 'nbouscal/vim-stylish-haskell'
+on_ft = ['haskell']
+
+[[plugins]]
+repo = 'enomsg/vim-haskellConcealPlus'
+on_ft = ['haskell']
+hook_source = '''
+" Conceal {{{
+" Use same color behind concealed unicode characters
+hi clear Conceal
+
+" Pretty unicode haskell symbols
+let g:haskell_conceal_wide = 1
+let g:haskell_conceal_enumerations = 1
+let hscoptions="𝐒𝐓𝐄𝐌xRtB𝔻w"
+
+" }}}
+'''
+
+[[plugins]]
+repo = 'mpickering/hlint-refactor-vim'
 on_ft = ['haskell']

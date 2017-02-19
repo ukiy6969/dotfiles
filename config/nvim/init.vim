@@ -1,7 +1,8 @@
-" host python
+" host python {{{
 let g:home = $HOME
 let g:python_host_prog = home . '/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = home . '/.pyenv/versions/neovim3/bin/python'
+" }}}
 
 " dein {{{
 if &compatible
@@ -111,7 +112,7 @@ if &listchars ==# 'eol:$'
 endif
 
 " Height of the command bar
-set cmdheight=1
+set cmdheight=2
 
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent
@@ -141,9 +142,12 @@ set showmatch
 set mat=2
 
 " Ambiguous charactor (○,□)
-if exists('&ambiwidth')
-  set ambiwidth=double
-endif
+"if exists('&ambiwidth')
+"  set ambiwidth=double
+"endif
+
+" Remove "Press Enter or type command to continue"
+set shortmess=a
 
 " }}}
 
@@ -349,7 +353,8 @@ au BufNewFile,BufRead *.ect setf html "
 " }}}
 
 " Keymap {{{
-inoremap jj <Esc>
+inoremap <silent> jj <Esc>
+inoremap <silent> っj <Esc>
 inoremap <C-j> j
 
 nnoremap <Leader>s :<C-u>sp<CR>
@@ -378,6 +383,9 @@ nnoremap <silent><Leader>gp :Unite grep <CR>
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
 
 " rust
 nnoremap <silent> <localleader>gr :CargoBuild<CR>
@@ -441,6 +449,9 @@ nmap <silent> <leader>hc :Neomake ghcmod<CR>
 
 map <silent> <leader>hr :call ApplyOneSuggestion()<CR>
 map <silent> <leader>hR :call ApplyAllSuggestions()<CR>
+
+" Haskell Lint
+nmap <silent> <leader>hl :Neomake hlint<CR>
 " }}}
 
 " Hoogle {{{
@@ -462,10 +473,15 @@ set cst
 set csverb
 " }}}
 
-" For conceal markers. {{{
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
+" Conceal {{{
+" Use same color behind concealed unicode characters
+hi clear Conceal
+
+" Pretty unicode haskell symbols
+let g:haskell_conceal_wide = 1
+let g:haskell_conceal_enumerations = 1
+let hscoptions="𝐒𝐓𝐄𝐌xRtB𝔻w"
+
 " }}}
 
 " Markdown {{{
@@ -475,4 +491,57 @@ let g:previm_open_cmd = 'firefox'
 
 " Tex {{{
 let g:syntastic_tex_checkers = ['']
+" }}}
+
+" Haskell {{{
+
+" Use hindent instead of par for haskell buffers
+autocmd FileType haskell let &formatprg="hindent --tab-size 2 -XQuasiQuotes"
+
+" Fix path issues from vim.wikia.com/wiki/Set_working_directory_to_the_current_file
+let s:default_path = escape(&path, '\ ') " store default value of 'path'
+" Always add the current file's directory to the path and tags list if not
+" already there. Add it to the beginning to speed up searches.
+autocmd BufRead *
+      \ let s:tempPath=escape(escape(expand("%:p:h"), ' '), '\ ') |
+      \ exec "set path-=".s:tempPath |
+      \ exec "set path-=".s:default_path |
+      \ exec "set path^=".s:tempPath |
+      \ exec "set path^=".s:default_path
+
+" Use one of the below settings and :Neomake.
+let g:neomake_haskell_enabled_makers = ['hdevtools']
+let g:neomake_haskell_enabled_makers = ['ghcmod']
+
+augroup haskell
+  autocmd!
+  autocmd FileType haskell map <silent> <leader><cr> :noh<cr>:GhcModTypeClear<cr>
+  autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+augroup END
+
+" Disable hlint-refactor-vim's default keybindings
+let g:hlintRefactor#disableDefaultKeybindings = 1
+
+" hlint-refactor-vim keybindings
+map <silent> <leader>hr :call ApplyOneSuggestion()<CR>
+map <silent> <leader>hR :call ApplyAllSuggestions()<CR>
+
+" Show types in completion suggestions
+let g:necoghc_enable_detailed_browse = 1
+" Resolve ghcmod base directory
+au FileType haskell let g:ghcmod_use_basedir = getcwd()
+" }}}
+
+" Point Conversion {{{
+
+function! Pointfree()
+  call setline('.', split(system('pointfree '.shellescape(join(getline(a:firstline, a:lastline), "\n"))), "\n"))
+endfunction
+vnoremap <silent> <leader>h. :call Pointfree()<CR>
+
+function! Pointful()
+  call setline('.', split(system('pointful '.shellescape(join(getline(a:firstline, a:lastline), "\n"))), "\n"))
+endfunction
+vnoremap <silent> <leader>h> :call Pointful()<CR>
+
 " }}}
