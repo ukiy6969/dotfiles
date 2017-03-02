@@ -24,8 +24,8 @@ dockernone() {
 dockerrmall() {
   docker rm $(docker ps -aq)
 }
-docker-machine start
-eval $(docker-machine env)
+# docker-machine start
+# eval $(docker-machine env)
 
 . /home/ukiy/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 

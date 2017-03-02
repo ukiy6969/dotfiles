@@ -1,5 +1,51 @@
 ls
 ls
+ls_
+:r
+ls_ OptL >>= mapM_ print
+:r
+ls_ OptI
+:r
+ls_ OptI >>= mapM_ print
+ls_
+:r
+:r
+:r
+:r
+:r
+tail
+ls_ OptL
+ls_
+:l examples/LsM.hs 
+ls
+ls_ OptL
+ls_
+:r
+ls
+LsM.
+ls_
+:l examples/LsM.hs 
+:show imports
+lsm
+ls_
+:r
+:r
+:l examples/LsM.hs 
+:r
+ls
+cat
+!cat "examples/LsM.hs"
+cat "examples/LsM.hs"
+:r
+:r
+:l examples/LsM.hs 
+ls
+:r
+:r
+:r
+ls
+ls
+ls
 g
 ls
 ls "-l" =<< glob "s*"
