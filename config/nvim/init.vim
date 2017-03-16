@@ -151,18 +151,6 @@ set shortmess=a
 
 " }}}
 
-" Color {{{
-
-let g:hybrid_use_Xresources = 1
-let g:hybrid_reduced_contrast = 1
-colorscheme hybrid
-set background=dark
-
-" Background transparency
-" highlight Normal ctermbg=none
-
-" }}}
-
 " Files, backups and undo {{{
 
 " Turn backup off, since most stuff is in Git anyway...
@@ -182,16 +170,6 @@ augroup END
 
 " Open file prompt with current path
 nmap <leader>e :e <C-R>=expand("%:p:h") . '/'<CR>
-
-" Show undo tree
-nmap <silent> <leader>u :MundoToggle<CR>
-
-" Fuzzy find files
-nnoremap <silent> <Leader><space> :CtrlP<CR>
-let g:ctrlp_max_files=0
-let g:ctrlp_show_hidden=1
-let g:ctrlp_custom_ignore = { 'dir': '\v[\/](.git|.cabal-sandbox|.stack-work)$' }
-
 " }}}
 
 " Text, tab and indent related {{{
@@ -239,10 +217,10 @@ vnoremap <silent> # :call VisualSelection('b', '')<CR>
 nnoremap j gj
 nnoremap k gk
 
-noremap <c-h> <c-w>h
-noremap <c-k> <c-w>k
-noremap <c-j> <c-w>j
-noremap <c-l> <c-w>l
+" noremap <c-h> <c-w>h
+" noremap <c-k> <c-w>k
+" noremap <c-j> <c-w>j
+" noremap <c-l> <c-w>l
 
 " Disable highlight when <leader><cr> is pressed
 " but preserve cursor coloring
@@ -265,14 +243,6 @@ nmap <leader>sl :rightbelow vnew<CR>
 nmap <leader>sk :leftabove  new<CR>
 nmap <leader>sj :rightbelow new<CR>
 
-" Manually create key mappings (to avoid rebinding C-\)
-let g:tmux_navigator_no_mappings = 1
-
-nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
-
 " don't close buffers when you aren't displaying them
 set hidden
 
@@ -290,15 +260,15 @@ noremap <leader>bd :Bd<cr>
 noremap <leader>b<space> :CtrlPBuffer<cr>
 
 " Neovim terminal configurations
-if has('nvim')
-  " Use <Esc> to escape terminal insert mode
-  tnoremap <Esc> <C-\><C-n>
-  " Make terminal split moving behave like normal neovim
-  tnoremap <c-h> <C-\><C-n><C-w>h
-  tnoremap <c-j> <C-\><C-n><C-w>j
-  tnoremap <c-k> <C-\><C-n><C-w>k
-  tnoremap <c-l> <C-\><C-n><C-w>l
-endif
+" if has('nvim')
+"   " Use <Esc> to escape terminal insert mode
+"   tnoremap <Esc> <C-\><C-n>
+"   " Make terminal split moving behave like normal neovim
+"   tnoremap <c-h> <C-\><C-n><C-w>h
+"   tnoremap <c-j> <C-\><C-n><C-w>j
+"   tnoremap <c-k> <C-\><C-n><C-w>k
+"   tnoremap <c-l> <C-\><C-n><C-w>l
+" endif
 
 
 " }}}
@@ -314,7 +284,6 @@ set laststatus=2
 
 " Pressing ,ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
-
 " }}}
 
 " Helper functions {{{
@@ -348,10 +317,6 @@ endfunction
 
 " }}}
 
-" ect {{{
-au BufNewFile,BufRead *.ect setf html "
-" }}}
-
 " Keymap {{{
 inoremap <silent> jj <Esc>
 inoremap <silent> っj <Esc>
@@ -363,124 +328,17 @@ nnoremap <Leader>v :<C-u>vs<CR>
 " Force redraw
 map <silent> <leader>r :redraw!<CR>
 
-nnoremap <Leader>t :VimFilerTab<CR>
-
-" VimFiler
-nnoremap <silent> <localleader>fe :VimFilerExplorer<CR>
-nnoremap <silent> <localleader>ff :VimFilerBufferDir<CR>
-
-" noh
-" nnoremap <C-l> :noh<C-l><CR>
-
-" Unite
-nnoremap <silent><Leader>b :Unite buffer<CR>
-nnoremap <silent><Leader>o :UniteWithBufferDir -buffer-name=files file <CR>
-nnoremap <silent><Leader>gs :Unite giti/status <CR>
-nnoremap <silent><Leader>gp :Unite grep <CR>
-
-" neosnippet
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-" if has('conceal')
-"   set conceallevel=2 concealcursor=niv
-" endif
-
 " rust
 nnoremap <silent> <localleader>gr :CargoBuild<CR>
 
- " giti
-nmap <Space>gd <SID>(git-diff-cached)
-nmap <Space>gD <SID>(git-diff)
-nmap <Space>gf <SID>(git-fetch-now)
-nmap <Space>gF <SID>(git-fetch)
-nmap <Space>gp <SID>(git-push-now)
-nmap <Space>gP <SID>(git-pull-now)
-nmap <Space>gl <SID>(git-log-line)
-nmap <Space>gL <SID>(git-log)
-
-" unite prefix key
-nnoremap [unite] <Nop>
-nmap <Leader>. [unite]
-
-nmap [unite]gg    <SID>(giti-sources)
-nmap [unite]gst   <SID>(git-status)
-nmap [unite]gb    <SID>(git-branch)
-nmap [unite]gB    <SID>(git-branch_all)
-nmap [unite]gc    <SID>(git-config)
-nmap [unite]gl    <SID>(git-log)
-nmap [unite]gL    <SID>(git-log-this-file)
-
 " }}}
 
-" giti {{{
-if globpath(&rtp, 'plugin/giti.vim') != ''
-  let g:giti_log_default_line_count = 100
-  nnoremap <expr><silent> <SID>(git-diff)        ':<C-u>GitiDiff ' . expand('%:p') . '<CR>'
-  nnoremap <expr><silent> <SID>(git-diff-cached) ':<C-u>GitiDiffCached ' . expand('%:p') .  '<CR>'
-  nnoremap       <silent> <SID>(git-fetch-now)    :<C-u>GitiFetch<CR>
-  nnoremap       <silent> <SID>(git-fetch)        :<C-u>GitiFetch
-  nnoremap <expr><silent> <SID>(git-push-now)    ':<C-u>GitiPushWithSettingUpstream origin ' . giti#branch#current_name() . '<CR>'
-  nnoremap       <silent> <SID>(git-push)         :<C-u>GitiPush
-  nnoremap       <silent> <SID>(git-pull-now)     :<C-u>GitiPull<CR>
-  nnoremap       <silent> <SID>(git-pull)         :<C-u>GitiPull
-  nnoremap       <silent> <SID>(git-log-line)     :<C-u>GitiLogLine ' . expand('%:p') . '<CR>'
-  nnoremap       <silent> <SID>(git-log)          :<C-u>GitiLog ' . expand('%:p') . '<CR>'
-
-  nnoremap <silent> <SID>(giti-sources)   :<C-u>Unite giti<CR>
-  nnoremap <silent> <SID>(git-status)     :<C-u>Unite giti/status<CR>
-  nnoremap <silent> <SID>(git-branch)     :<C-u>Unite giti/branch<CR>
-  nnoremap <silent> <SID>(git-branch_all) :<C-u>Unite giti/branch_all<CR>
-  nnoremap <silent> <SID>(git-config)     :<C-u>Unite giti/config<CR>
-  nnoremap <silent> <SID>(git-log)        :<C-u>Unite giti/log<CR>
-
-  nnoremap <silent><expr> <SID>(git-log-this-file) ':<C-u>Unite giti/log:' . expand('%:p') . '<CR>'
-endif
-" }}}
-
-" ghcmod.vim {{{
-" Type of expression under cursor
-nmap <silent> <leader>ht :GhcModType<CR>
-" Insert type of expression under cursor
-nmap <silent> <leader>hT :GhcModTypeInsert<CR>
-" GHC errors and warnings
-nmap <silent> <leader>hc :Neomake ghcmod<CR>
-
-map <silent> <leader>hr :call ApplyOneSuggestion()<CR>
-map <silent> <leader>hR :call ApplyAllSuggestions()<CR>
-
-" Haskell Lint
-nmap <silent> <leader>hl :Neomake hlint<CR>
-" }}}
-
-" Hoogle {{{
-" Hoogle the word under the cursor
-nnoremap <silent> <leader>hh :Hoogle<CR>
-" Hoogle and prompt for input
-nnoremap <leader>hH :Hoogle 
-" Hoogle for detailed documentation (e.g. "Functor")
-nnoremap <silent> <leader>hi :HoogleInfo<CR>
-" Hoogle for detailed documentation and prompt for input
-nnoremap <leader>hI :HoogleInfo 
-" Hoogle, close the Hoogle window
-nnoremap <silent> <leader>hz :HoogleClose<CR>
-" }}}
-"
 " Tags {{{
+map <leader>tt :TagbarToggle<CR>
+
 set tags=tags;/
 set cst
 set csverb
-" }}}
-
-" Conceal {{{
-" Use same color behind concealed unicode characters
-hi clear Conceal
-
-" Pretty unicode haskell symbols
-let g:haskell_conceal_wide = 1
-let g:haskell_conceal_enumerations = 1
-let hscoptions="𝐒𝐓𝐄𝐌xRtB𝔻w"
 
 " }}}
 
@@ -508,28 +366,6 @@ autocmd BufRead *
       \ exec "set path-=".s:default_path |
       \ exec "set path^=".s:tempPath |
       \ exec "set path^=".s:default_path
-
-" Use one of the below settings and :Neomake.
-let g:neomake_haskell_enabled_makers = ['hdevtools']
-let g:neomake_haskell_enabled_makers = ['ghcmod']
-
-augroup haskell
-  autocmd!
-  autocmd FileType haskell map <silent> <leader><cr> :noh<cr>:GhcModTypeClear<cr>
-  autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-augroup END
-
-" Disable hlint-refactor-vim's default keybindings
-let g:hlintRefactor#disableDefaultKeybindings = 1
-
-" hlint-refactor-vim keybindings
-map <silent> <leader>hr :call ApplyOneSuggestion()<CR>
-map <silent> <leader>hR :call ApplyAllSuggestions()<CR>
-
-" Show types in completion suggestions
-let g:necoghc_enable_detailed_browse = 1
-" Resolve ghcmod base directory
-au FileType haskell let g:ghcmod_use_basedir = getcwd()
 " }}}
 
 " Tags {{{
@@ -601,4 +437,8 @@ function! Pointful()
 endfunction
 vnoremap <silent> <leader>h> :call Pointful()<CR>
 
+" }}}
+
+" ect {{{
+au BufNewFile,BufRead *.ect setf html "
 " }}}

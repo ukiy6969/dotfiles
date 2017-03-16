@@ -12,6 +12,9 @@ fi
 
 # Customize to your needs...
 
+# Locale
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # alias
 alias vim=nvim
@@ -85,6 +88,8 @@ export PYENV_ROOT=$HOME/.pyenv
 export PATH=$PYENV_ROOT/bin:$PATH
 eval "$(pyenv init -)"
 
+export PATH=$PATH:$HOME/Library/Python/3.6/bin
+
 # for yaourt
 export VISUAL="vim"
 
@@ -98,7 +103,7 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 export CARGO_HOME=$HOME/.cargo
 export PATH=$CARGO_HOME/bin:$PATH
 export PATH=$HOME/.multirust/toolchains/nightly/cargo/bin:$PATH
-export RUST_SRC_PATH="/home/ukiy/tmp/rustc-1.8.0/src"
+#export RUST_SRC_PATH=$HOME/.multirust/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src
 export VTE_CJK_WIDTH=1
 
 # for webstorm
@@ -106,3 +111,8 @@ export PATH=$HOME/Downloads/WebStorm-162.1628.41/bin:$PATH
 
 # for Ruby
 export PATH=$HOME/.gem/ruby/2.4.0/bin:$PATH
+
+# only for mac 
+# http://www.task-notes.com/entry/20141223/1419324649
+alias brew='env PATH=${PATH//$HOME\/.pyenv\/shims:/} brew'
+export PATH=$PATH:/usr/libexec

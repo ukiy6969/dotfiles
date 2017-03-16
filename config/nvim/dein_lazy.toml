@@ -3,7 +3,7 @@
 repo = 'rust-lang/rust.vim'
 on_ft = ['rust']
 hook_source = '''
-  let g:rustfmt_autosave = 1
+  let g:rustfmt_autosave = 0
 '''
 
 [[plugins]]
@@ -78,24 +78,71 @@ hook_source = '''
 
 # Haskell
 [[plugins]]
-repo = 'neovimhaskell/haskell-vim'
+repo = 'enomsg/vim-haskellConcealPlus'
 on_ft = ['haskell']
 hook_source = '''
-" open the neomake error window automatically when an error is found
-let g:neomake_open_list = 2
-" Haskell Lint
-nmap <silent> <leader>hl :Neomake hlint<CR>
+  " Conceal {{{
+  " Use same color behind concealed unicode characters
+  hi clear Conceal
 
-" Options for Haskell Syntax Check
-let g:neomake_haskell_ghc_mod_args = '-g-Wall'
+  " Pretty unicode haskell symbols
+  let g:haskell_conceal_wide = 1
+  let g:haskell_conceal_enumerations = 1
+  let hscoptions="𝐒𝐓𝐄𝐌xRtB𝔻w"
+  " }}}
 '''
 
 [[plugins]]
-repo = 'itchyny/vim-haskell-indent'
+repo = 'neovimhaskell/haskell-vim'
 on_ft = ['haskell']
 
 [[plugins]]
 repo = 'eagletmt/ghcmod-vim'
+on_ft = ['haskell']
+hook_source = '''
+  " Resolve ghcmod base directory
+  let g:ghcmod_use_basedir = getcwd()
+  " Type of expression under cursor
+  nmap <silent> <leader>ht :GhcModType<CR>
+  " Insert type of expression under cursor
+  nmap <silent> <leader>hT :GhcModTypeInsert<CR>
+
+  augroup haskell
+    autocmd!
+    autocmd FileType haskell map <silent> <leader><cr> :noh<cr>:GhcModTypeClear<cr>
+  augroup END
+'''
+
+[[plugins]]
+repo = 'mpickering/hlint-refactor-vim'
+on_ft = ['haskell']
+hook_source = '''
+  " Disable hlint-refactor-vim's default keybindings
+  let g:hlintRefactor#disableDefaultKeybindings = 1
+
+  " hlint-refactor-vim keybindings
+  map <silent> <leader>hr :call ApplyOneSuggestion()<CR>
+  map <silent> <leader>hR :call ApplyAllSuggestions()<CR>
+'''
+
+[[plugins]]
+repo = 'Twinside/vim-hoogle'
+on_ft = ['haskell']
+hook_source = '''
+  " Hoogle the word under the cursor
+  nnoremap <silent> <leader>hh :Hoogle<CR>
+  " Hoogle and prompt for input
+  nnoremap <leader>hH :Hoogle 
+  " Hoogle for detailed documentation (e.g. "Functor")
+  nnoremap <silent> <leader>hi :HoogleInfo<CR>
+  " Hoogle for detailed documentation and prompt for input
+  nnoremap <leader>hI :HoogleInfo 
+  " Hoogle, close the Hoogle window
+  nnoremap <silent> <leader>hz :HoogleClose<CR>
+'''
+
+[[plugins]]
+repo = 'itchyny/vim-haskell-indent'
 on_ft = ['haskell']
 
 [[plugins]]
@@ -105,10 +152,15 @@ on_ft = ['haskell']
 [[plugins]]
 repo = 'ujihisa/neco-ghc'
 on_ft = ['haskell']
+hook_source = '''
+  " Show types in completion suggestions
+  let g:necoghc_enable_detailed_browse = 1
 
-[[plugins]]
-repo = 'Twinside/vim-hoogle'
-on_ft = ['haskell']
+  augroup haskell
+    autocmd!
+    autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+  augroup END
+'''
 
 #[[plugins]]
 #repo = 'osyo-manga/vim-watchdogs'
@@ -119,33 +171,9 @@ repo = 'ujihisa/unite-haskellimport'
 on_ft = ['haskell']
 
 [[plugins]]
-repo = 'majutsushi/tagbar'
-on_ft = ['haskell']
-
-[[plugins]]
 repo = 'ujihisa/ref-hoogle'
 on_ft = ['haskell']
 
 [[plugins]]
 repo = 'nbouscal/vim-stylish-haskell'
-on_ft = ['haskell']
-
-[[plugins]]
-repo = 'enomsg/vim-haskellConcealPlus'
-on_ft = ['haskell']
-hook_source = '''
-" Conceal {{{
-" Use same color behind concealed unicode characters
-hi clear Conceal
-
-" Pretty unicode haskell symbols
-let g:haskell_conceal_wide = 1
-let g:haskell_conceal_enumerations = 1
-let hscoptions="𝐒𝐓𝐄𝐌xRtB𝔻w"
-
-" }}}
-'''
-
-[[plugins]]
-repo = 'mpickering/hlint-refactor-vim'
 on_ft = ['haskell']
