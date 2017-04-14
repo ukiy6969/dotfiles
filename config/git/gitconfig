@@ -1,5 +1,6 @@
 [core]
 	editor = /usr/local/bin/vim
+  excludesfile = ~/.gitignore
 [user]
 	name = ukiy6969
 	email = ukiy6969@gmail.com

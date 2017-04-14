@@ -56,6 +56,14 @@ on_ft = ['javascript']
 repo = 'plasticboy/vim-markdown'
 on_ft = ['Markdown', 'markdown']
 
+[[plugins]]
+repo = 'kannokanno/previm'
+on_ft = ['Markdown', 'markdown']
+
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+on_ft = ['Markdown', 'markdown']
+
 # Stylus
 [[plugins]]
 repo = 'wavded/vim-stylus'
@@ -177,3 +185,9 @@ on_ft = ['haskell']
 [[plugins]]
 repo = 'nbouscal/vim-stylish-haskell'
 on_ft = ['haskell']
+
+
+# Scala
+[[plugins]]
+repo = 'derekwyatt/vim-scala'
+on_ft = ['scala']
