@@ -9,6 +9,12 @@ hook_source = '''
 [[plugins]]
 repo = 'racer-rust/vim-racer'
 on_ft = ['rust']
+hook_source = '''
+  nmap gd <Plug>(rust-def)
+  nmap gs <Plug>(rust-def-split)
+  nmap gx <Plug>(rust-def-vertical)
+  nmap <leader>gd <Plug>(rust-doc)
+'''
 
 [[plugins]]
 repo = 'timonv/vim-cargo'

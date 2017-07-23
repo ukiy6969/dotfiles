@@ -263,6 +263,8 @@ bar {
   status_command i3blocks
   font pango:DejaVu Sans, Icons 14
   position top
+  output eDP1
+  output HIMI1
   colors {
     statusline #AAAAAA
     background #333333

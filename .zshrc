@@ -104,8 +104,9 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 export CARGO_HOME=$HOME/.cargo
 export PATH=$CARGO_HOME/bin:$PATH
 export PATH=$HOME/.multirust/toolchains/nightly/cargo/bin:$PATH
-#export RUST_SRC_PATH=$HOME/.multirust/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 export VTE_CJK_WIDTH=1
+fpath+=~/.zfunc
 
 # for webstorm
 export PATH=$HOME/Downloads/WebStorm-162.1628.41/bin:$PATH
