@@ -18,10 +18,10 @@ install_minimum()
   done
 
   # tmux setup
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  [[ ! -d ~/.tmux/plugins/tpm ]] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
   # zprezto
-  git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+  [[ ! -d "${ZDOTDIR:-$HOME}/.zprezto" ]] && git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 }
 
 install_minimum
