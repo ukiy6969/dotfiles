@@ -131,5 +131,8 @@ if [ -f "$HOME/Library/google-cloud-sdk/path.zsh.inc" ]; then source "$HOME/Libr
 # The next line enables shell command completion for gcloud.
 if [ -f "$HOME/Library/google-cloud-sdk/completion.zsh.inc" ]; then source "$HOME/Library/google-cloud-sdk/completion.zsh.inc"; fi
 
+# load loal zshrc
+if [ -f "$HOME/.zshrc.local" ]; then source "$HOME/.zshrc.local"; fi
+
 # startup
 if [ "$TMUX" = "" ]; then tmux; fi
