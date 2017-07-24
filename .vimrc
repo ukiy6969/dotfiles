@@ -198,6 +198,11 @@ nmap <leader>sl :rightbelow vnew<CR>
 nmap <leader>sk :leftabove  new<CR>
 nmap <leader>sj :rightbelow new<CR>
 
+" c-h mac not working
+if has('mac')
+  nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
+endif
+
 " don't close buffers when you aren't displaying them
 set hidden
 

@@ -4,7 +4,7 @@ DIR=$(realpath $(dirname $0))
 
 install_minimum()
 {
-  local ignore=(".git" ".gitignore" ".atom" ".config" ".ghc" ".gitconfig" ".ideavimrc")
+  local ignore=(".git" ".gitignore" ".atom" ".config" ".ghc" ".ideavimrc")
   for f in .??*
   do
     # check ignore
