@@ -9,3 +9,5 @@
 [http]
 [socks]
 [http]
+[fetch]
+	prune = true
