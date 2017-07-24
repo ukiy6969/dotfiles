@@ -24,4 +24,13 @@ install_minimum()
   [[ ! -d "${ZDOTDIR:-$HOME}/.zprezto" ]] && git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 }
 
+install_config()
+{
+  for d in ${DIR}/config/*/
+  do
+    ln -sfnv "$DIR/config/$(basename $d)" $HOME/.config/$(basename $d)
+  done
+}
+
 install_minimum
+install_config
