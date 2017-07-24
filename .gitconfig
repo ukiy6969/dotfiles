@@ -1,6 +1,6 @@
 [core]
 	editor = /usr/local/bin/vim
-  excludesfile = ~/.gitignore
+	excludesfile = /Users/a14762/.gitignore_global
 [user]
 	name = ukiy6969
 	email = ukiy6969@gmail.com
