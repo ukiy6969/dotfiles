@@ -104,6 +104,9 @@ set mat=2
 " Remove "Press Enter or type command to continue"
 set shortmess=a
 
+" diff option vertical
+set diffopt+=vertical
+
 " }}}
 
 " Files, backups and undo {{{
