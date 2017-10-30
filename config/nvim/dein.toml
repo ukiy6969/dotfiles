@@ -276,7 +276,7 @@ depends = 'vim-airline/vim-airline'
 repo = 'scrooloose/syntastic'
 hook_add = '''
   set statusline+=%#warningmsg#
-  set statusline+=%{SyntasticStatuslineFlag()}
+  set statusline+=%{exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}
   set statusline+=%*
 
   " エラー行に sign を表示
@@ -420,3 +420,6 @@ repo = 'easymotion/vim-easymotion'
 
 [[plugins]]
 repo = 'ConradIrwin/vim-bracketed-paste'
+
+[[plugins]]
+repo = 'simeji/winresizer'
