@@ -11,3 +11,5 @@
 [http]
 [fetch]
 	prune = true
+[diff "sopsdiffer"]
+	textconv = sops -d

@@ -5,3 +5,10 @@
 .npmrc
 .python-version
 tags
+.vscode
+.nyc_output
+.envrc
+.ensime
+.ensime_cache
+*.log
+ensime.sbt

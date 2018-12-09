@@ -1,6 +1,7 @@
 #!/bin/bash
 
 DIR=$(realpath $(dirname $0))
+echo $DIR
 
 install_minimum()
 {

@@ -20,12 +20,8 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 # alias
-alias re="exec $SHELL"
+alias re="exec $SHELL -l"
 
-# docker
-dockernone() {
-  docker rmi $(docker images | awk '/^<none>/ { print $3 }')
-}
 dockerrmall() {
   docker rm $(docker ps -aq)
 }
@@ -36,44 +32,6 @@ dockerrmall() {
 
 # for SSH
 #eval $(ssh-agent) > /dev/null
-
-function proxy_on() {
-    export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
-
-    if (( $# > 0 )); then
-        valid=$(echo $@ | sed -n 's/\([0-9]\{1,3\}.\)\{4\}:\([0-9]\+\)/&/p')
-        if [[ $valid != $@ ]]; then
-            >&2 echo "Invalid address"
-            return 1
-        fi
-
-        export http_proxy="http://$1/"
-        export https_proxy=$http_proxy
-        export ftp_proxy=$http_proxy
-        export rsync_proxy=$http_proxy
-        echo "Proxy environment variable set."
-        return 0
-    fi
-
-    echo -n "server: "; read server
-    echo -n "port: "; read port
-    export http_proxy="http://$pre$server:$port/"
-    export https_proxy=$http_proxy
-    export ftp_proxy=$http_proxy
-    export rsync_proxy=$http_proxy
-    export HTTP_PROXY=$http_proxy
-    export HTTPS_PROXY=$http_proxy
-    export FTP_PROXY=$http_proxy
-    export RSYNC_PROXY=$http_proxy
-}
-
-function proxy_off(){
-    unset http_proxy
-    unset https_proxy
-    unset ftp_proxy
-    unset rsync_proxy
-    echo -e "Proxy environment variable removed."
-}
 
 # Terminal
 export TERM=xterm-256color
@@ -91,7 +49,7 @@ export PATH=$PYENV_ROOT/bin:$PATH
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-export PATH=$PATH:$HOME/Library/Python/3.6/bin
+# export PATH=$PATH:$HOME/Library/Python/3.6/bin
 
 # for yaourt
 export VISUAL="vim"
@@ -105,29 +63,29 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # for scala
-alias sbt="TERM=xterm-color sbt"
+# alias sbt="TERM=xterm-color sbt"
 
 # place this after nvm initialization!
-autoload -U add-zsh-hook
-load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
+# autoload -U add-zsh-hook
+# load-nvmrc() {
+#   local node_version="$(nvm version)"
+#   local nvmrc_path="$(nvm_find_nvmrc)"
 
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+#   if [ -n "$nvmrc_path" ]; then
+#     local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
 
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+#     if [ "$nvmrc_node_version" = "N/A" ]; then
+#       nvm install
+#     elif [ "$nvmrc_node_version" != "$node_version" ]; then
+#       nvm use
+#     fi
+#   elif [ "$node_version" != "$(nvm version default)" ]; then
+#     echo "Reverting to nvm default version"
+#     nvm use default
+#   fi
+# }
+# add-zsh-hook chpwd load-nvmrc
+# load-nvmrc
 
 
 # for rust
@@ -155,13 +113,11 @@ export NVM_DIR="$HOME/.nvm"
 
 export HOMEBREW_GITHUB_API_TOKEN="573d36351e6a841c2d4e26d81f884ee33b44b088"
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/Library/google-cloud-sdk/path.zsh.inc" ]; then source "$HOME/Library/google-cloud-sdk/path.zsh.inc"; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f "$HOME/Library/google-cloud-sdk/completion.zsh.inc" ]; then source "$HOME/Library/google-cloud-sdk/completion.zsh.inc"; fi
+export PATH=$PATH:$HOME/go/bin
 
 # load loal zshrc
 if [ -f "$HOME/.zshrc.local" ]; then source "$HOME/.zshrc.local"; fi
 
 
+# direnv
+eval "$(direnv hook zsh)"
