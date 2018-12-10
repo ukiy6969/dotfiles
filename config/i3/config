@@ -14,7 +14,7 @@ set $mod Mod4
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 #font pango:monospace 8
-font pango:DejaVu Sans Mono, Icons 14
+font pango:DejaVu Sans Mono, Icons 12
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -48,12 +48,14 @@ set $bg_set feh --bg-center ~/Documents/wallpaper/1920x1080-data_out_9_56073420-
 # startup applications
 #exec --no-startup-id wicd-client --tray
 exec --no-startup-id uim-toolbar-gtk3-systray
+exec --no-startup-id uim-toolbar-gtk3
 exec --no-startup-id volumeicon
 exec --no-startup-id $bg_set
 exec --no-startup-id conky
 exec --no-startup-id parcellite
 exec --no-startup-id display-visor -f -l
 exec --no-startup-id dunst
+exec --no-startup-id nm-applet
 
 # change focus
 bindsym $mod+h focus left
@@ -202,8 +204,8 @@ bindsym $mod+Mod1+h mode "$mode_display_HDMI1"
 set $mode_display Display HDMI1 (l) left, (r) right, (o) off
 
 mode "$mode_display_HDMI1" {
-    bindsym l exec --no-startup-id xrandr --output HDMI1 --auto --left-of eDP1 && $bg_set
-    bindsym r exec --no-startup-id xrandr --output HDMI1 --scale 2x2 --mode 1920x1080 --right-of eDP1 && $bg_set
+    bindsym l exec --no-startup-id xrandr --output HDMI1 --scale 2x2 --mode 1920x1080 --left-of eDP1 && $bg_set
+    bindsym r exec --no-startup-id xrandr --output HDMI1 --mode 1920x1080 --right-of eDP1 && $bg_set
     bindsym o exec --no-startup-id xrandr --output HDMI1 --off && $bg_set
 
     # back to normal: Enter or Escape
@@ -262,7 +264,7 @@ mode "$mode_rotate_display" {
 bar {
   #status_command i3status
   status_command i3blocks
-  font pango:DejaVu Sans, Icons 14
+  font pango:DejaVu Sans, Icons 12
   position top
   output eDP1
   output HIMI1
