@@ -33,9 +33,6 @@ dockerrmall() {
 # for SSH
 #eval $(ssh-agent) > /dev/null
 
-# Terminal
-export TERM=xterm-256color
-
 # XDG_CONFIG
 
 export XDG_CONFIG_HOME=$HOME/.config
