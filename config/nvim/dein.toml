@@ -112,9 +112,10 @@ repo = 'Shougo/neosnippet-snippets'
 repo = 'Shougo/deoplete.nvim'
 hook_source = '''
   let g:deoplete#enable_at_startup = 1
-  inoremap <expr><tab> pumvisible() ? "\<C-n>" :
-        \ neosnippet#expandable_or_jumpable() ?
-        \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
+  let g:deoplete#sources={} 
+  let g:deoplete#sources._=['buffer', 'member', 'tag', 'file', 'omni', 'ultisnips'] 
+  let g:deoplete#omni#input_patterns={} 
+  let g:deoplete#omni#input_patterns.scala='[^. *\t]\.\w*'
 '''
 on_i = 1
 
