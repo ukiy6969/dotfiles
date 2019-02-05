@@ -15,10 +15,6 @@ fi
 
 # Customize to your needs...
 
-# Locale
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-
 # alias
 alias re="exec $SHELL -l"
 
@@ -67,8 +63,6 @@ export PATH=$PATH:/usr/libexec
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-export HOMEBREW_GITHUB_API_TOKEN="573d36351e6a841c2d4e26d81f884ee33b44b088"
 
 export PATH=$PATH:$HOME/go/bin
 
