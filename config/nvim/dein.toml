@@ -28,21 +28,11 @@ build = 'make'
 
 # filer
 [[plugins]]
-repo = 'Shougo/vimfiler.vim'
-hook_add = '''
-  " VimFiler
-  let g:mapleader = ","
-  let g:vimfiler_as_default_explorer = 1
-  nnoremap <silent> <leader>ft :VimFilerTab<CR>
-  nnoremap <silent> <leader>fe :VimFilerExplorer<CR>
-  nnoremap <silent> <leader>ff :VimFilerBufferDir<CR>
-'''
+repo = 'Shougo/defx.nvim'
 
 [[plugins]]
 repo = 'Shougo/neoyank.vim'
 
-# Snipet
-[[plugins]]
 repo = 'Shougo/neosnippet.vim'
 hook_source = '''
   " neosnippet
@@ -333,12 +323,6 @@ hook_add = '''
 
 [[plugins]]
 repo = 'thinca/vim-ref'
-
-[[plugins]]
-repo = 'rhysd/unite-redpen.vim'
-hook_add = '''
-  let g:redpen_default_config_path = $HOME . '/.config/redpen/conf/redpen-conf-ja.xml'
-  '''
 
 # Text
 [[plugins]]
