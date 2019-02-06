@@ -217,5 +217,23 @@ au FileType scala nnoremap <localleader>df :EnDeclaration<CR>
 '''
 
 [[plugins]]
+repo = 'w0rp/ale'
+on_ft = 'scala'
+hook_source = '''
+  let g:ale_completion_enabled = 1
+'''
+depends = [
+  'ensime-vim'
+]
+
+[[plugins]]
+repo = 'Chiel92/vim-autoformat'
+on_ft = 'scala'
+hook_source = '''
+  let g:formatdef_scalafmt = "'scalafmt --stdin 2>/dev/nul'"
+  let g:formatters_scala = ['scalafmt']
+'''
+
+[[plugins]]
 repo = 'fatih/vim-go'
 on_ft = ['go']

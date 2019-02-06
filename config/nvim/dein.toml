@@ -16,6 +16,9 @@ hook_add = '''
 
 [[plugins]]
 repo = 'chemzqm/denite-git'
+hook_add = '''
+  nnoremap <silent><Leader>gs :Denite gitstatus<CR>
+'''
 
 # Translate
 [[plugins]]
