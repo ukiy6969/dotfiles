@@ -10,6 +10,7 @@ hook_add = '''
   nnoremap <silent><Leader>b :Denite buffer<CR>
   nnoremap <silent><Leader>o :DeniteProjectDir -buffer-name=files file <CR>
   nnoremap <silent><Leader>co :DeniteBufferDir -buffer-name=files file <CR>
+  nnoremap <silent><Leader>ot :DeniteProjectDir -buffer-name=files file_rec -default-action=tabopen <CR>
   nnoremap <silent><Leader>gp :Denite -auto_preview grep <CR>
   nnoremap <silent><Leader>y :Denite neoyank <CR>
 '''
