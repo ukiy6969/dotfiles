@@ -210,7 +210,7 @@ let g:scala_scaladoc_indent = 1
 [[plugins]]
 repo = 'ensime/ensime-vim'
 on_ft = ['scala']
-hook_source = '''
+hook_post_source = '''
 autocmd BufWritePost *.scala silent :EnTypeCheck
 nnoremap <localleader>t :EnType<CR>
 au FileType scala nnoremap <localleader>df :EnDeclaration<CR>
