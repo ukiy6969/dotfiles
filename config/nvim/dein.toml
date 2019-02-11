@@ -273,25 +273,6 @@ depends = 'vim-airline/vim-airline'
 # '''
 
 [[plugins]]
-repo = 'scrooloose/syntastic'
-hook_add = '''
-  set statusline+=%#warningmsg#
-  set statusline+=%{exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}
-  set statusline+=%*
-
-  " エラー行に sign を表示
-  let g:syntastic_enable_signs = 1
-  " location list を常に更新
-  let g:syntastic_always_populate_loc_list = 1
-  " location list を常に表示
-  let g:syntastic_auto_loc_list = 0
-  " ファイルを開いた時にチェックを実行する
-  let g:syntastic_check_on_open = 0
-  " :wq で終了する時もチェックする
-  let g:syntastic_check_on_wq = 0
-'''
-
-[[plugins]]
 repo = 'neomake/neomake'
 hook_source = '''
   " open the neomake error window automatically when an error is found
