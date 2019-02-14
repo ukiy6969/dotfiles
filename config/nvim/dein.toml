@@ -419,3 +419,6 @@ hook_source = '''
   nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
   nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 '''
+
+[[plugins]]
+repo = 'junegunn/fzf'
