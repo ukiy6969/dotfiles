@@ -1,7 +1,22 @@
-" host python {{{
-let g:home = $HOME
-let g:python_host_prog = home . '/.pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = home . '/.pyenv/versions/neovim3/bin/python'
+" host program {{{
+if has("mac")
+    " mac用の設定
+    let g:home = $HOME
+    let g:python_host_prog = home . '/.pyenv/versions/neovim2/bin/python'
+    let g:python3_host_prog = home . '/.pyenv/versions/neovim3/bin/python'
+elseif has("unix")
+    " unix固有の設定
+    let g:python_host_prog = '/usr/bin/python2'
+    let g:python3_host_prog = '/usr/bin/python'
+    let g:node_host_prog = '/usr/bin/neovim-node-host'
+    let g:ruby_host_prog = '/usr/bin/neovim-ruby-host'
+elseif has("win64")
+    " 64bit_windows固有の設定
+elseif has("win32unix")
+    " Cygwin固有の設定
+elseif has("win32")
+    " 32bit_windows固有の設定
+endif
 " }}}
 
 " dein {{{
