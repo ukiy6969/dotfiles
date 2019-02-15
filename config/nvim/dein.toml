@@ -411,7 +411,7 @@ hook_source = '''
   set signcolumn=yes
   let g:LanguageClient_serverCommands = {
       \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-      \ 'javascript': ['/usr/bin/javascript-typescript-stdio'],
+      \ 'javascript': ['javascript-typescript-stdio'],
       \ 'python': ['/usr/local/bin/pyls'],
       \ }
 
