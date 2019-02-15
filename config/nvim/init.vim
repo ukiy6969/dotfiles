@@ -2,8 +2,10 @@
 if has("mac")
     " mac用の設定
     let g:home = $HOME
-    let g:python_host_prog = home . '/.pyenv/versions/neovim2/bin/python'
-    let g:python3_host_prog = home . '/.pyenv/versions/neovim3/bin/python'
+    let g:python_host_prog = home . '/.virtualenv/neovim2/bin/python'
+    let g:python3_host_prog = home . '/.virtualenv/neovim3/bin/python'
+    let g:node_host_prog = '/usr/local/bin/neovim-node-host'
+    let g:ruby_host_prog = '/usr/local/bin/neovim-ruby-host'
 elseif has("unix")
     " unix固有の設定
     let g:python_host_prog = '/usr/bin/python2'
