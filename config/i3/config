@@ -9,7 +9,7 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod4
+set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -47,13 +47,14 @@ set $bg_set feh --bg-center ~/Documents/wallpaper/1920x1080-data_out_9_56073420-
 
 # startup applications
 #exec --no-startup-id wicd-client --tray
-exec --no-startup-id uim-toolbar-gtk3-systray
-exec --no-startup-id uim-toolbar-gtk3
+# exec --no-startup-id uim-toolbar-gtk3-systray
+# exec --no-startup-id uim-toolbar-gtk3
 exec --no-startup-id volumeicon
 exec --no-startup-id $bg_set
 exec --no-startup-id parcellite
 exec --no-startup-id display-visor -f -l
 exec --no-startup-id dunst
+exec --no-startup-id fcitx
 
 # change focus
 bindsym $mod+h focus left
@@ -196,67 +197,6 @@ mode "$mode_system" {
 
 bindsym $mod+z mode "$mode_system"
 
-# HDMI1
-bindsym $mod+Mod1+h mode "$mode_display_HDMI1"
-
-set $mode_display Display HDMI1 (l) left, (r) right, (o) off
-
-mode "$mode_display_HDMI1" {
-    bindsym l exec --no-startup-id xrandr --output HDMI1 --scale 2x2 --mode 1920x1080 --left-of eDP1 && $bg_set
-    bindsym r exec --no-startup-id xrandr --output HDMI1 --mode 1920x1080 --right-of eDP1 && $bg_set
-    bindsym o exec --no-startup-id xrandr --output HDMI1 --off && $bg_set
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
-# DP1
-bindsym $mod+Mod1+d mode "$mode_display_DP2"
-
-set $mode_display Display DP2 (l) left, (r) right, (o) off
-
-mode "$mode_display_DP2" {
-    bindsym l exec --no-startup-id xrandr --output DP2 --auto --left-of eDP1 && $bg_set
-    bindsym r exec --no-startup-id xrandr --output DP2 --auto --right-of eDP1 && $bg_set
-    bindsym o exec --no-startup-id xrandr --output DP2 --off && $bg_set
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
-# VGA1
-bindsym $mod+Mod1+v mode "$mode_display_VGA1"
-
-set $mode_display Display VGA1 (l) left, (r) right, (o) off
-
-mode "$mode_display_VGA1" {
-    bindsym l exec --no-startup-id xrandr --output VGA1 --auto --left-of eDP1 && $bg_set
-    bindsym r exec --no-startup-id xrandr --output VGA1 --auto --right-of eDP1 && $bg_set
-    bindsym o exec --no-startup-id xrandr --output VGA1 --off && $bg_set
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
-# Rolate Screen
-bindsym $mod+Mod1+r mode "$mode_rotate_display"
-set $mode_rotate_display Display Rotate (l) left, (r) right, (i) invert, (n) normal
-
-mode "$mode_rotate_display" {
-    bindsym l exec --no-startup-id xrandr -o left
-    bindsym r exec --no-startup-id xrandr -o right
-    bindsym i exec --no-startup-id xrandr -o invert
-    bindsym n exec --no-startup-id xrandr -o normal
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-
-}
-
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
@@ -266,6 +206,7 @@ bar {
   position top
   output eDP1
   output HIMI1
+  output VNC-0
   colors {
     statusline #AAAAAA
     background #333333
