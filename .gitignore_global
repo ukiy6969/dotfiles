@@ -28,3 +28,6 @@ project/.bloop/
 
 # javascript
 .eslintignore
+
+# python
+.venv
