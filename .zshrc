@@ -6,7 +6,7 @@
 #
 
 # startup tmux
-if [ "$TMUX" = "" ]; then tmux; fi
+# if [ "$TMUX" = "" ]; then tmux; fi
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
@@ -15,6 +15,9 @@ fi
 
 # LANG to us
 export LANG=en_US.utf8
+
+# EDITOR
+command -v nvim > /dev/null && export EDITOR=nvim
 
 # Customize to your needs...
 
@@ -35,13 +38,13 @@ export VISUAL="vim"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-command -v npm && export PATH="$(npm bin -g):$PATH"
+command -v npm > /dev/null && export PATH="$(npm bin -g):$PATH"
 
 # for rust
 export CARGO_HOME=$HOME/.cargo
 export PATH=$CARGO_HOME/bin:$PATH
 export PATH=$HOME/.multirust/toolchains/nightly/cargo/bin:$PATH
-command -v rustc && export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+command -v rustc > /dev/null && export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 export VTE_CJK_WIDTH=1
 fpath+=~/.zfunc
 
@@ -60,15 +63,15 @@ export PATH=$PATH:$HOME/go/bin
 if [ -f "$HOME/.zshrc.local" ]; then source "$HOME/.zshrc.local"; fi
 
 # direnv
-command -v direnv && eval "$(direnv hook zsh)"
+command -v direnv > /dev/null && eval "$(direnv hook zsh)"
 
 # kubectl completion
-command -v kubectl && source <(kubectl completion zsh)
+command -v kubectl > /dev/null && source <(kubectl completion zsh)
 alias k=kubectl
 
 # ruby
 export PATH="$HOME/.rbenv/bin:$PATH"
-command -v rbenv && eval "$(rbenv init -)"
+command -v rbenv > /dev/null && eval "$(rbenv init -)"
 if which ruby >/dev/null && which gem >/dev/null; then
     PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
 fi
