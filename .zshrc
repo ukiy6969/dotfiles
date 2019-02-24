@@ -48,11 +48,6 @@ command -v rustc > /dev/null && export RUST_SRC_PATH="$(rustc --print sysroot)/l
 export VTE_CJK_WIDTH=1
 fpath+=~/.zfunc
 
-# only for mac 
-# http://www.task-notes.com/entry/20141223/1419324649
-alias brew='env PATH=${PATH//$HOME\/.pyenv\/shims:/} brew'
-export PATH=$PATH:/usr/libexec
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
