@@ -6,21 +6,20 @@
 #
 
 # startup tmux
-# if [ "$TMUX" = "" ]; then tmux; fi
+if [ "$TMUX" = "" ]; then tmux; fi
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+# LANG to us
+export LANG=en_US.utf8
+
 # Customize to your needs...
 
 # alias
 alias re="exec $SHELL -l"
-
-dockerrmall() {
-  docker rm $(docker ps -aq)
-}
 
 # XDG_CONFIG
 
@@ -29,15 +28,6 @@ export XDG_CONFIG_HOME=$HOME/.config
 # local
 export PATH="$HOME/.local/bin":$PATH
 
-# python
-# export PYENV_ROOT=$HOME/.pyenv
-# export PATH=$PYENV_ROOT/bin:$PATH
-# export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
-
-# export PATH=$PATH:$HOME/Library/Python/3.6/bin
-
 # for yaourt
 export VISUAL="vim"
 
@@ -45,13 +35,13 @@ export VISUAL="vim"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-export PATH="$(npm bin -g):$PATH"
+command -v npm && export PATH="$(npm bin -g):$PATH"
 
 # for rust
 export CARGO_HOME=$HOME/.cargo
 export PATH=$CARGO_HOME/bin:$PATH
 export PATH=$HOME/.multirust/toolchains/nightly/cargo/bin:$PATH
-export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+command -v rustc && export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 export VTE_CJK_WIDTH=1
 fpath+=~/.zfunc
 
@@ -70,11 +60,24 @@ export PATH=$PATH:$HOME/go/bin
 if [ -f "$HOME/.zshrc.local" ]; then source "$HOME/.zshrc.local"; fi
 
 # direnv
-eval "$(direnv hook zsh)"
+command -v direnv && eval "$(direnv hook zsh)"
+
+# kubectl completion
+command -v kubectl && source <(kubectl completion zsh)
+alias k=kubectl
 
 # ruby
 export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+command -v rbenv && eval "$(rbenv init -)"
 if which ruby >/dev/null && which gem >/dev/null; then
     PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
 fi
+
+# XKB caps to ctrl
+export XKB_DEFAULT_OPTIONS=ctrl:nocaps,
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
