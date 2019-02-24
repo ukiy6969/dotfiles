@@ -27,7 +27,7 @@ install_minimum()
 
 install_config()
 {
-  mkdir -p $DIR/.config
+  mkdir -p $HOME/.config
   for d in ${DIR}/config/*/
   do
     ln -sfnv "$DIR/config/$(basename $d)" $HOME/.config/$(basename $d)
