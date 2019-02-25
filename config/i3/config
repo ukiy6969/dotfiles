@@ -43,7 +43,7 @@ bindsym $mod+Shift+q kill
 # installed.
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
-set $bg_set feh --bg-center ~/Documents/wallpaper/1920x1080-data_out_9_56073420-arch-wallpapers.jpg
+set $bg_set feh --bg-center /usr/share/backgrounds/archlinux/archlinux-simplyblack.png
 
 # startup applications
 #exec --no-startup-id wicd-client --tray
