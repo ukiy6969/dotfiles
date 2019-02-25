@@ -14,7 +14,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # LANG to us
-export LANG=en_US.utf8
+# export LANG=en_US.utf8
 
 # EDITOR
 command -v nvim > /dev/null && export EDITOR=nvim
