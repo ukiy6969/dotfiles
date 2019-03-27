@@ -417,6 +417,7 @@ hook_source = '''
       \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
       \ 'javascript': ['javascript-typescript-stdio'],
       \ 'python': ['/usr/local/bin/pyls'],
+      \ 'cpp': ['clangd'],
       \ }
 
   nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
