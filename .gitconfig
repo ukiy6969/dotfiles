@@ -13,3 +13,5 @@
 	prune = true
 [diff "sopsdiffer"]
 	textconv = sops -d
+[url "git@ghe.ca-tools.org:"]
+ insteadOf = https://ghe.ca-tools.org/

@@ -25,6 +25,7 @@ project/.bloop/
 .cache
 .lib/
 .metals/
+.bloop/
 
 # javascript
 .eslintignore

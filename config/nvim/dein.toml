@@ -11,7 +11,11 @@ hook_add = '''
   nnoremap <silent><Leader>o :DeniteProjectDir -buffer-name=files file <CR>
   nnoremap <silent><Leader>co :DeniteBufferDir -buffer-name=files file <CR>
   nnoremap <silent><Leader>ot :DeniteProjectDir -buffer-name=files file_rec -default-action=tabopen <CR>
-  nnoremap <silent><Leader>gp :Denite -auto_preview grep <CR>
+
+  nnoremap <silent><Leader>gp :<C-u>Denite -buffer-name=search -no-empty -mode=normal grep <CR>
+  " Denite grep検索結果を再表示する
+  nnoremap <silent><Leade>r :<C-u>Denite -resume -buffer-name=search <CR>
+
   nnoremap <silent><Leader>y :Denite neoyank <CR>
 '''
 
@@ -418,6 +422,8 @@ hook_source = '''
       \ 'javascript': ['javascript-typescript-stdio'],
       \ 'python': ['/usr/local/bin/pyls'],
       \ 'cpp': ['clangd'],
+      \ 'go': ['gopls'],
+      \ 'scala': ['metals-vim'],
       \ }
 
   nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
