@@ -6,6 +6,29 @@ repo = 'Shougo/dein.vim'
 [[plugins]]
 repo = 'Shougo/denite.nvim'
 hook_add = '''
+
+	" Define mappings
+	autocmd FileType denite call s:denite_my_settings()
+	function! s:denite_my_settings() abort
+	  nnoremap <silent><buffer><expr> <CR>
+	  \ denite#do_map('do_action')
+	  nnoremap <silent><buffer><expr> d
+	  \ denite#do_map('do_action', 'delete')
+	  nnoremap <silent><buffer><expr> p
+	  \ denite#do_map('do_action', 'preview')
+	  nnoremap <silent><buffer><expr> q
+	  \ denite#do_map('quit')
+	  nnoremap <silent><buffer><expr> i
+	  \ denite#do_map('open_filter_buffer')
+	  nnoremap <silent><buffer><expr> <Space>
+	  \ denite#do_map('toggle_select').'j'
+	endfunction
+
+	autocmd FileType denite-filter call s:denite_filter_my_settings()
+	function! s:denite_filter_my_settings() abort
+	  imap <silent><buffer> <C-o> <Plug>(denite_filter_quit)
+	endfunction
+
   let g:mapleader = ","
   nnoremap <silent><Leader>b :Denite buffer<CR>
   nnoremap <silent><Leader>o :DeniteProjectDir -buffer-name=files file <CR>
@@ -130,10 +153,19 @@ repo = 'Shougo/neosnippet-snippets'
 repo = 'Shougo/deoplete.nvim'
 hook_source = '''
   let g:deoplete#enable_at_startup = 1
-  let g:deoplete#sources={} 
-  let g:deoplete#sources._=['buffer', 'member', 'tag', 'file', 'omni', 'ultisnips'] 
-  let g:deoplete#omni#input_patterns={} 
-  let g:deoplete#omni#input_patterns.scala='[^. *\t]\.\w*'
+  let g:deoplete#auto_complete_delay = 0
+  let g:deoplete#auto_complete_start_length = 1
+  call deoplete#custom#option('sources', {
+      \ 'scala': ['buffer', 'dictionary', 'file', 'member', 'omni', 'tag'],
+      \})
+
+  call deoplete#custom#var('omni', 'input_patterns', {
+      \ 'scala': [
+      \     '[^. *\t]\.\w*',
+      \     '[:\[,] ?\w*',
+      \     '^import .*'
+      \   ]
+      \})
 '''
 on_i = 1
 
@@ -415,7 +447,6 @@ build = 'bash install.sh'
 hook_source = '''
   " Required for operations modifying multiple buffers like rename.
   set hidden
-  set completefunc=LanguageClient#complete
   set signcolumn=yes
   let g:LanguageClient_serverCommands = {
       \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
@@ -429,6 +460,8 @@ hook_source = '''
   nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
   nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
   nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+  set completefunc=LanguageClient#complete
 '''
 
 [[plugins]]
