@@ -29,16 +29,43 @@ hook_add = '''
 	  imap <silent><buffer> <C-o> <Plug>(denite_filter_quit)
 	endfunction
 
+  call denite#custom#option('_', 'statusline', v:false)
+
   let g:mapleader = ","
-  nnoremap <silent><Leader>b :Denite buffer<CR>
-  nnoremap <silent><Leader>o :DeniteProjectDir -buffer-name=files file <CR>
+  nnoremap <silent><Leader>bu :Denite buffer<CR>
+  nnoremap <silent><Leader>o :DeniteProjectDir -buffer-name=files -split=floating file <CR>
   nnoremap <silent><Leader>co :DeniteBufferDir -buffer-name=files file <CR>
   nnoremap <silent><Leader>ot :DeniteProjectDir -buffer-name=files file_rec -default-action=tabopen <CR>
 
-  nnoremap <silent><Leader>gp :<C-u>Denite -buffer-name=search -no-empty -mode=normal grep <CR>
-  " Denite grep検索結果を再表示する
-  nnoremap <silent><Leade>r :<C-u>Denite -resume -buffer-name=search <CR>
+  " Ag command on grep source
+  call denite#custom#var('grep', 'command', ['ag'])
+  call denite#custom#var('grep', 'default_opts',
+      \ ['-i', '--vimgrep'])
+  call denite#custom#var('grep', 'recursive_opts', [])
+  call denite#custom#var('grep', 'pattern_opt', [])
+  call denite#custom#var('grep', 'separator', ['--'])
+  call denite#custom#var('grep', 'final_opts', [])
 
+  " Change file/rec command.
+  call denite#custom#var('file/rec', 'command',
+  \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+
+  " grep
+  command! -nargs=? Dgrep call s:Dgrep(<f-args>)
+  function s:Dgrep(...)
+    if a:0 > 0
+      execute(':Denite -buffer-name=grep-buffer-denite grep -path='.a:1)
+    else
+      execute(':Denite -buffer-name=grep-buffer-denite grep')
+    endif
+  endfunction
+  " show Denite grep results
+  command! Dresume execute(':Denite -resume -buffer-name=grep-buffer-denite')
+  " next Denite grep result
+  command! Dnext execute(':Denite -resume -buffer-name=grep-buffer-denite -cursor-pos=+1 -immediately ')
+  " previous Denite grep result
+  command! Dprev execute(':Denite -resume -buffer-name=grep-buffer-denite -cursor-pos=-1 -immediately ')
+  " neoyank
   nnoremap <silent><Leader>y :Denite neoyank <CR>
 '''
 

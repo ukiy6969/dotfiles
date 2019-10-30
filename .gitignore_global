@@ -13,6 +13,8 @@ tags
 *.log
 ensime.sbt
 
+.tmp/
+
 # sbt https://github.com/github/gitignore/blob/master/Global/SBT.gitignore
 dist/*
 target/
