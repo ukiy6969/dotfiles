@@ -51,7 +51,7 @@ hook_add = '''
   \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
 
   " grep
-  command! -nargs=? Dgrep call s:Dgrep(<f-args>)
+  command! -nargs=? -complete=dir Dgrep call s:Dgrep(<f-args>)
   function s:Dgrep(...)
     if a:0 > 0
       execute(':Denite -buffer-name=grep-buffer-denite grep -path='.a:1)
