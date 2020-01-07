@@ -253,8 +253,8 @@ hook_add = '''
 repo = 'w0ng/vim-hybrid'
 hook_add = '''
   " Color
-  let g:hybrid_use_Xresources = 1
-  let g:hybrid_reduced_contrast = 1
+  " let g:hybrid_use_Xresources = 1
+  " let g:hybrid_reduced_contrast = 1
   colorscheme hybrid
   set background=dark
 '''
