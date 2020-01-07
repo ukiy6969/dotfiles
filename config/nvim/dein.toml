@@ -37,8 +37,8 @@ hook_add = '''
   nnoremap <silent><Leader>co :DeniteBufferDir -buffer-name=files file <CR>
   nnoremap <silent><Leader>ot :DeniteProjectDir -buffer-name=files file_rec -default-action=tabopen <CR>
 
-  " Ag command on grep source
-  call denite#custom#var('grep', 'command', ['ag'])
+  " Rg command on grep source
+  call denite#custom#var('grep', 'command', ['rg'])
   call denite#custom#var('grep', 'default_opts',
       \ ['-i', '--vimgrep'])
   call denite#custom#var('grep', 'recursive_opts', [])

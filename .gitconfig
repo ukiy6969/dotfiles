@@ -14,4 +14,6 @@
 [diff "sopsdiffer"]
 	textconv = sops -d
 [url "git@ghe.ca-tools.org:"]
- insteadOf = https://ghe.ca-tools.org/
+  insteadOf = https://ghe.ca-tools.org/
+[url "git@github.com:"]
+	insteadOf = https://github.com/

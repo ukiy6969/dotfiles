@@ -172,6 +172,10 @@ vnoremap <silent> <leader>h> :call Pointful()<CR>
 
 " }}}
 
+" Color {{{
+set termguicolors
+" }}}
+
 " ect {{{
 au BufNewFile,BufRead *.ect setf html "
 " }}}

@@ -48,10 +48,6 @@ command -v rustc > /dev/null && export RUST_SRC_PATH="$(rustc --print sysroot)/l
 export VTE_CJK_WIDTH=1
 fpath+=~/.zfunc
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # go
 export PATH=$PATH:$HOME/go/bin
 source ~/.gvm/scripts/gvm
@@ -81,3 +77,4 @@ if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/
 
 # The next line enables shell command completion for gcloud.
 if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
+export PATH="/usr/local/sbin:$PATH"
