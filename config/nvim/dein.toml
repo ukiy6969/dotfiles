@@ -253,8 +253,8 @@ hook_add = '''
 repo = 'w0ng/vim-hybrid'
 hook_add = '''
   " Color
-  " let g:hybrid_use_Xresources = 1
-  " let g:hybrid_reduced_contrast = 1
+  let g:hybrid_custom_term_colors = 1
+  let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
   colorscheme hybrid
   set background=dark
 '''
@@ -480,7 +480,7 @@ hook_source = '''
       \ 'javascript': ['javascript-typescript-stdio'],
       \ 'typescript': ['javascript-typescript-stdio'],
       \ 'vue': ['vls'],
-      \ 'python': ['/usr/local/bin/pyls'],
+      \ 'python': ['pyls'],
       \ 'cpp': ['clangd'],
       \ 'go': ['gopls'],
       \ 'scala': ['metals-vim'],
