@@ -35,6 +35,9 @@ output * bg /home/ukiy/Documents/wallpaper/1920x1080-data_out_9_56073420-arch-wa
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym $mod+Shift+n exec swaymsg input 1:1:AT_Translated_Set_2_keyboard events toggle
+
+bindsym $mod+p exec grim -g "$(slurp -d)" - | wl-copy
 
 output eDP-1 scale 1
 #
@@ -220,18 +223,19 @@ bindsym $mod+z mode "$mode_system"
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-    status_command i3status
-    font pango:DejaVu Sans, Icons 12
-    position top
-    colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
-        statusline #AAAAAA
-        background #333333
-        focused_workspace #282828 #282828 #FFFFFF
-        inactive_workspace #333333 #333333 #AAAAAA
-    }
+    swaybar_command waybar
+    # status_command i3status
+    # font pango:DejaVu Sans, Icons 12
+    # position top
+    # colors {
+    #     statusline #ffffff
+    #     background #323232
+    #     inactive_workspace #32323200 #32323200 #5c5c5c
+    #     statusline #AAAAAA
+    #     background #333333
+    #     focused_workspace #282828 #282828 #FFFFFF
+    #     inactive_workspace #333333 #333333 #AAAAAA
+    # }
 }
 
 include /etc/sway/config.d/*

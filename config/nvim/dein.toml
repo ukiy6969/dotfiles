@@ -478,6 +478,8 @@ hook_source = '''
   let g:LanguageClient_serverCommands = {
       \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
       \ 'javascript': ['javascript-typescript-stdio'],
+      \ 'typescript': ['javascript-typescript-stdio'],
+      \ 'vue': ['vls'],
       \ 'python': ['/usr/local/bin/pyls'],
       \ 'cpp': ['clangd'],
       \ 'go': ['gopls'],
