@@ -392,21 +392,21 @@ hook_source = '''
 repo = 'majutsushi/tagbar'
 hook_add = '''
   " https://github.com/dan-t/rusty-tags
-  autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/
-  autocmd BufWrite *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&"
-  let g:tagbar_type_rust = {
-    \ 'ctagstype' : 'rust',
-    \ 'kinds' : [
-        \'T:types,type definitions',
-        \'f:functions,function definitions',
-        \'g:enum,enumeration names',
-        \'s:structure names',
-        \'m:modules,module names',
-        \'c:consts,static constants',
-        \'t:traits,traits',
-        \'i:impls,trait implementations',
-    \]
-    \}
+  " autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/
+  " autocmd BufWrite *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&"
+  " let g:tagbar_type_rust = {
+  "   \ 'ctagstype' : 'rust',
+  "   \ 'kinds' : [
+  "       \'T:types,type definitions',
+  "       \'f:functions,function definitions',
+  "       \'g:enum,enumeration names',
+  "       \'s:structure names',
+  "       \'m:modules,module names',
+  "       \'c:consts,static constants',
+  "       \'t:traits,traits',
+  "       \'i:impls,trait implementations',
+  "   \]
+  "   \}
   let g:tagbar_type_scala = {
     \ 'ctagstype' : 'scala',
     \ 'sro'       : '.',
@@ -476,7 +476,7 @@ hook_source = '''
   set hidden
   set signcolumn=yes
   let g:LanguageClient_serverCommands = {
-      \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+      \ 'rust': ['rustup', 'run', 'stable', 'rls'],
       \ 'javascript': ['javascript-typescript-stdio'],
       \ 'typescript': ['javascript-typescript-stdio'],
       \ 'vue': ['vls'],

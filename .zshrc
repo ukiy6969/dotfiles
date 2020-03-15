@@ -41,10 +41,7 @@ export NVM_DIR="$HOME/.nvm"
 command -v npm > /dev/null && export PATH="$(npm bin -g):$PATH"
 
 # for rust
-export CARGO_HOME=$HOME/.cargo
-export PATH=$CARGO_HOME/bin:$PATH
-export PATH=$HOME/.multirust/toolchains/nightly/cargo/bin:$PATH
-command -v rustc > /dev/null && export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+source ~/.cargo/env
 export VTE_CJK_WIDTH=1
 fpath+=~/.zfunc
 
@@ -68,9 +65,6 @@ command -v rbenv > /dev/null && eval "$(rbenv init -)"
 if which ruby >/dev/null && which gem >/dev/null; then
     PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
 fi
-
-# XKB caps to ctrl
-export XKB_DEFAULT_OPTIONS=ctrl:nocaps,
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
