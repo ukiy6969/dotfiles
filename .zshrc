@@ -41,13 +41,13 @@ export NVM_DIR="$HOME/.nvm"
 command -v npm > /dev/null && export PATH="$(npm bin -g):$PATH"
 
 # for rust
-source ~/.cargo/env
+[ -f ~/.cargo/env ] && source ~/.cargo/env
 export VTE_CJK_WIDTH=1
 fpath+=~/.zfunc
 
 # go
 export PATH=$PATH:$HOME/go/bin
-source ~/.gvm/scripts/gvm
+[ -f ~/.gvm/scripts/gvm ] && source ~/.gvm/scripts/gvm
 
 # load loal zshrc
 if [ -f "$HOME/.zshrc.local" ]; then source "$HOME/.zshrc.local"; fi
