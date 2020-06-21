@@ -36,6 +36,9 @@ hook_add = '''
   nnoremap <silent><Leader>o :DeniteProjectDir -buffer-name=files -split=floating file <CR>
   nnoremap <silent><Leader>co :DeniteBufferDir -buffer-name=files file <CR>
   nnoremap <silent><Leader>ot :DeniteProjectDir -buffer-name=files file_rec -default-action=tabopen <CR>
+  nnoremap <silent> <Leader>sg :<C-u>DeniteCursorWord grep<CR>
+  nnoremap <silent> <Leader>sG :<C-u>Denite grep<CR>
+  nnoremap <silent> <Leader>r :<C-u>Dresume<CR>
 
   " Rg command on grep source
   call denite#custom#var('grep', 'command', ['rg'])
@@ -489,6 +492,7 @@ hook_source = '''
       \ 'cpp': ['clangd'],
       \ 'go': ['gopls'],
       \ 'scala': ['metals-vim'],
+      \ 'sbt': ['metals-vim'],
       \ }
 
   nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>

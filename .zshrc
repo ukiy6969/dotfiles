@@ -46,7 +46,8 @@ export VTE_CJK_WIDTH=1
 fpath+=~/.zfunc
 
 # go
-export PATH=$PATH:$HOME/go/bin
+export GOPATH=$(go env GOPATH)
+export GO111MODULE="on"
 [ -f ~/.gvm/scripts/gvm ] && source ~/.gvm/scripts/gvm
 
 # load loal zshrc
