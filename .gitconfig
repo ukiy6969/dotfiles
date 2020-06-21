@@ -11,6 +11,9 @@
 [http]
 [fetch]
 	prune = true
+[pull]
+  rebase = false
+  ff = only
 [diff "sopsdiffer"]
 	textconv = sops -d
 [url "git@ghe.ca-tools.org:"]
