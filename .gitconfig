@@ -18,8 +18,6 @@
 	textconv = sops -d
 [url "git@ghe.ca-tools.org:"]
   insteadOf = https://ghe.ca-tools.org/
-[url "git@github.com:"]
-	insteadOf = https://github.com/
 
 [alias]
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
