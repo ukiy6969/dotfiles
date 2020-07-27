@@ -1,8 +1,11 @@
 " host program {{{
+
+" disable python2
+let g:loaded_python_provider = 0
+
 if has("mac")
     " mac用の設定
     let g:home = $HOME
-    let g:python_host_prog = home . '/.virtualenv/neovim2/bin/python'
     let g:python3_host_prog = home . '/.virtualenv/neovim3/bin/python'
     let g:node_host_prog = '/usr/local/bin/neovim-node-host'
     let g:ruby_host_prog = '/usr/local/bin/neovim-ruby-host'
