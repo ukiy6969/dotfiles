@@ -35,3 +35,6 @@ project/metals.sbt
 
 # python
 .venv
+
+# vscode
+__debug_bin
