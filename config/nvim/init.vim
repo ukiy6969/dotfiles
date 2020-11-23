@@ -17,6 +17,7 @@ elseif has("unix")
     let g:ruby_host_prog = '/usr/bin/neovim-ruby-host'
 elseif has("win64")
     " 64bit_windows固有の設定
+    set clipboard=unnamedplus
 elseif has("win32unix")
     " Cygwin固有の設定
 elseif has("win32")
