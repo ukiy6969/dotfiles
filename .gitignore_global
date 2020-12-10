@@ -29,6 +29,7 @@ project/metals.sbt
 .lib/
 .metals/
 .bloop/
+.bsp
 
 # javascript
 .eslintignore
@@ -38,3 +39,6 @@ project/metals.sbt
 
 # vscode
 __debug_bin
+
+# kpt
+.kpt-hydrated/

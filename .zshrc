@@ -13,6 +13,8 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+export PATH=/usr/local/bin:$PATH
+
 # LANG to us
 # export LANG=en_US.utf8
 
@@ -47,8 +49,9 @@ fpath+=~/.zfunc
 
 # go
 export GOPATH=$(go env GOPATH)
+export GOBIN=$GOPATH/bin
 export GO111MODULE="on"
-[ -f ~/.gvm/scripts/gvm ] && source ~/.gvm/scripts/gvm
+# [ -f ~/.gvm/scripts/gvm ] && source ~/.gvm/scripts/gvm
 
 # load loal zshrc
 if [ -f "$HOME/.zshrc.local" ]; then source "$HOME/.zshrc.local"; fi
@@ -59,6 +62,9 @@ command -v direnv > /dev/null && eval "$(direnv hook zsh)"
 # kubectl completion
 command -v kubectl > /dev/null && source <(kubectl completion zsh)
 alias k=kubectl
+
+# skaffold completion
+command -v skaffold > /dev/null && source <(skaffold completion zsh)
 
 # ruby
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -72,4 +78,4 @@ if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/
 
 # The next line enables shell command completion for gcloud.
 if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
-export PATH="/usr/local/sbin:$PATH"
+export CLOUDSDK_PYTHON=python2

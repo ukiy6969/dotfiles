@@ -196,10 +196,10 @@ augroup END
 set viminfo^=%
 
 " Open window splits in various places
-nmap <leader>sh :leftabove  vnew<CR>
-nmap <leader>sl :rightbelow vnew<CR>
-nmap <leader>sk :leftabove  new<CR>
-nmap <leader>sj :rightbelow new<CR>
+nmap <leader>sh :leftabove  vsplit<CR>
+nmap <leader>sl :rightbelow vsplit<CR>
+nmap <leader>sk :leftabove  split<CR>
+nmap <leader>sj :rightbelow split<CR>
 
 " c-h mac not working
 if has('mac')
