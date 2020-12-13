@@ -50,6 +50,7 @@ fpath+=~/.zfunc
 # go
 export GOPATH=$(go env GOPATH)
 export GOBIN=$GOPATH/bin
+export PATH=$PATH:$GOBIN
 export GO111MODULE="on"
 # [ -f ~/.gvm/scripts/gvm ] && source ~/.gvm/scripts/gvm
 
