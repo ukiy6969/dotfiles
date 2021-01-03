@@ -48,7 +48,7 @@ export VTE_CJK_WIDTH=1
 fpath+=~/.zfunc
 
 # go
-export GOPATH=$(go env GOPATH)
+command -v go > /dev/null && export GOPATH=$(go env GOPATH)
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOBIN
 export GO111MODULE="on"
