@@ -42,3 +42,8 @@ __debug_bin
 
 # kpt
 .kpt-hydrated/
+
+# mira
+my_pkg/
+user.bazelrc
+.secrets
