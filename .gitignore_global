@@ -47,3 +47,16 @@ __debug_bin
 my_pkg/
 user.bazelrc
 .secrets
+# java
+*.iml
+.classpath
+.project
+.settings
+dependency-reduced-pom.xml
+
+# asm
+**/install_asm
+**/output
+
+# vscode
+.vscode/

@@ -9,6 +9,7 @@ if has("mac")
     let g:python3_host_prog = home . '/.virtualenv/neovim3/bin/python'
     let g:node_host_prog = '/usr/local/bin/neovim-node-host'
     let g:ruby_host_prog = '/usr/local/bin/neovim-ruby-host'
+    lang en_US.UTF-8
 elseif has("unix")
     " unix固有の設定
     let g:python_host_prog = '/usr/bin/python2'

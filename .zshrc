@@ -54,9 +54,6 @@ export PATH=$PATH:$GOBIN
 export GO111MODULE="on"
 # [ -f ~/.gvm/scripts/gvm ] && source ~/.gvm/scripts/gvm
 
-# load loal zshrc
-if [ -f "$HOME/.zshrc.local" ]; then source "$HOME/.zshrc.local"; fi
-
 # direnv
 command -v direnv > /dev/null && eval "$(direnv hook zsh)"
 
@@ -80,3 +77,5 @@ if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/
 # The next line enables shell command completion for gcloud.
 if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
 export CLOUDSDK_PYTHON=python3
+# load loal zshrc
+if [ -f "$HOME/.zshrc.local" ]; then source "$HOME/.zshrc.local"; fi
