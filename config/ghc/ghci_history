@@ -1,0 +1,16 @@
+:t hoge
+type hoge
+t hoge
+:}
+    else a
+    then "OK!"
+hoge a b = if b
+:{
+}:
+    else a
+    then "OK!"
+hoge a b = if b
+:{
+    else a
+    then "OK!"
+hoge a b = if b

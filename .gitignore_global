@@ -30,6 +30,7 @@ project/metals.sbt
 .metals/
 .bloop/
 .bsp
+.sbtops
 
 # javascript
 .eslintignore
