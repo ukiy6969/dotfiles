@@ -53,3 +53,6 @@ use = [
     'async.zsh',
     'pure.zsh',
 ]
+
+[plugins.zsh-peco-history]
+github = 'jimeh/zsh-peco-history'
