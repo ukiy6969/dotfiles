@@ -17,12 +17,11 @@ export XDG_CONFIG_HOME=$HOME/.config
 #   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 # fi
 
+autoload -U +X compinit
+compinit
 
 # Sheldon
 eval "$(sheldon source)"
-
-autoload -U +X compinit
-compinit
 
 export PATH=/usr/local/bin:$PATH
 
